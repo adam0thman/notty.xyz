@@ -11,6 +11,6 @@ This will consists of:
 
 Mobile app for i.M.Here will be in separate Git repo.
 
-Web is at [attendance.space] (https://attendance.space)
+Web is at [attendance.space](https://attendance.space).
 
 By: WTW Fintech Sdn Bhd
