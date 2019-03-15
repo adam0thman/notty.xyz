@@ -98,6 +98,7 @@
       .get().then(function(userData) {
         userData.forEach(function(userSingle) {
           console.log("Current userSingle is: "+userSingle.data().organization);
+          $('#txt-name-top').html(userSingle.data().name);
           $('#txt-org-name').html(userSingle.data().organization);
           $('#txt-org-name-table').html(userSingle.data().organization);
           $('#btn-add-new').attr("data-organization",userSingle.data().organization);
@@ -138,7 +139,7 @@
         cellNum.appendChild(document.createTextNode(i));
         
         var cellDummy = document.createElement('td');
-        cellDummy.appendChild(document.createTextNode(i));
+        cellDummy.innerHTML = '<i class="far fa-trash-alt text-danger"></i>';
         
         var cellName = document.createElement('td');
         cellName.appendChild(document.createTextNode(eachSession.data().session_name));

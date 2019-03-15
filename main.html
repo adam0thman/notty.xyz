@@ -12,6 +12,7 @@
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="./css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     
   </head>
   <body>
@@ -22,7 +23,7 @@
               <div class="row">
                 <div class="col-sm-8 col-md-7 py-4">
                   <h4 class="text-white">i.M.Here</h4>
-                  <p class="text-muted">Welcome <holder>[username]</holder>! This is you Dashboard, for viewing your sessions, and your past attendance. In order to utilize i.M.Here, you would need to download the i.M.Here mobile app via Google Playstore or Apple Appstore. Also, ensure that your organization regisytrar has enrolled you in!</p>
+                  <p class="text-secondary">Welcome <holder id="txt-name-top"></holder>! This is you Dashboard, for viewing your sessions, and your past attendance. In order to utilize i.M.Here, you would need to download the i.M.Here mobile app via Google Playstore or Apple Appstore. Also, ensure that your organization regisytrar has enrolled you in!</p>
                 </div>
                 <div class="col-sm-4 offset-md-1 py-4">
                   <h4 class="text-white">Navigational</h4>
@@ -44,8 +45,11 @@
             <div class="container d-flex justify-content-between">
               <a href="#" class="navbar-brand d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                <strong>i.M.Here</strong>
+                <strong>i.<text class="text-danger">M</text>.Here</strong>
               </a>
+              <button class="navbar-toggler text-white" type="button">
+                  <i class="far fa-play-circle text-white"></i>  Start Session
+              </button>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
