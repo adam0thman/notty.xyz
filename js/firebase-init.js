@@ -1,9 +1,4 @@
 
-<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-storage.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js"></script>
 <script>
   // Initialize Firebase
   var config = {
