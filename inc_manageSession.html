@@ -81,14 +81,13 @@
   }
   $("#txt-month-year-caption").html(monthNames[$("#input-month").val()]+" "+$("#input-year").val());
   $("#txt-month-year-table").html(monthNames[$("#input-month").val()]+" "+$("#input-year").val());
-
   // We listen for button click and query the relevant months
   $('#btn-show-session').on('click', function() {
       console.log("#input-month is "+$("#input-month").val());
       const queryMonthYear = monthNames[$("#input-month").val()]+$("#input-year").val();
       $("#txt-month-year-caption").html(monthNames[$("#input-month").val()]+" "+$("#input-year").val());
       $("#txt-month-year-table").html(monthNames[$("#input-month").val()]+" "+$("#input-year").val());
-      //getSpecificMonthBonus(queryMonthYear);
+      loadExistingSessions(sessionStorage.getItem("orgId"));
   })
 
   firebase.auth().onAuthStateChanged(function(user) {
@@ -101,6 +100,7 @@
           console.log("Current userSingle is: "+userSingle.data().organization);
           $('#txt-org-name').html(userSingle.data().organization);
           $('#txt-org-name-table').html(userSingle.data().organization);
+          sessionStorage.setItem("orgId", userSingle.data().organization_unique_id);
           loadExistingSessions(userSingle.data().organization_unique_id);
         })
       }).then(function() {
@@ -116,8 +116,10 @@
   
   function loadExistingSessions(orgId) {
     console.log("orgId requested is: "+orgId);
-    //db.collection("sessions/"+orgId+"/"+$("#input-year").val()+"-"+$("#input-month").val()+"/").doc(orgId)
-    db.collection("sessions/UMC/2019-3/").where("session_completed","==",false)
+    var colString = "sessions/"+orgId+"/"+$("#input-year").val()+"-"+(parseInt($("#input-month").val())+1)+"/";
+    console.log("colString is: "+colString);
+    db.collection(colString).where("session_completed","==",false)
+    //db.collection("sessions/UMC/2019-3/").where("session_completed","==",false)
     .get().then(function(allSessions) {
 
       var tableBody = document.getElementById('allExistingSessions');
