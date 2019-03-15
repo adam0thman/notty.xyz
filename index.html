@@ -104,7 +104,7 @@
       
       $("#btn-logout").on('click', function() {
         firebase.auth().signOut().then(function() {
-          window.location.replace("https://www.jasabyte.com/livestock2/login.html");
+          window.location.replace(pageURL+pageLogin);
         }).catch(function(error) {
           console.log("Error signing out.");
         });
@@ -112,7 +112,8 @@
       
       firebase.auth().onAuthStateChanged(function(user) {
         if (!user) {
-          window.location.replace("https://www.jasabyte.com/livestock2/login.html");
+          console.log("User not logged in.");
+          //window.location.replace("https://www.jasabyte.com/livestock2/login.html");
         }
       });
     </script>
