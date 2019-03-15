@@ -51,12 +51,15 @@
       <tr>
         <th>#</th>
         <th></th>
-        <th>Full Name</th>
-        <th>ID</th>
-        <th>Phone</th>
+        <th>Session Name</th>
+        <th>Location</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Owner</th>
+        <th>Secret Key</th>
       </tr>
     </thead>
-    <tbody id="allExistingUsers">
+    <tbody id="allExistingSessions">
     </tbody>
   </table>
 </div>
@@ -98,10 +101,10 @@
           console.log("Current userSingle is: "+userSingle.data().organization);
           $('#txt-org-name').html(userSingle.data().organization);
           $('#txt-org-name-table').html(userSingle.data().organization);
-          loadExistingUsers(userSingle.data().organization);
+          loadExistingSessions(userSingle.data().organization_unique_id);
         })
       }).then(function() {
-        console.log("Err.... Done?");
+        console.log("yes, done!");
       }).catch(function(e) {
         console.log("Error fetching user details: ", e);
       });
@@ -111,19 +114,20 @@
     }
   });
   
-  function loadExistingUsers(orgName) {
-    console.log("orgName requested is: "+orgName);
-    db.collection("users").where("organization","==",orgName)
-    .get().then(function(allUsers) {
+  function loadExistingSessions(orgId) {
+    console.log("orgId requested is: "+orgId);
+    //db.collection("sessions/"+orgId+"/"+$("#input-year").val()+"-"+$("#input-month").val()+"/").doc(orgId)
+    db.collection("sessions/UMC/2019-3/").where("session_completed","==",false)
+    .get().then(function(allSessions) {
 
-      var tableBody = document.getElementById('allExistingUsers');
+      var tableBody = document.getElementById('allExistingSessions');
       while (tableBody.firstChild) {
         tableBody.removeChild(tableBody.firstChild);
       }
       var i = 1;
 
-      allUsers.forEach(function(eachUser) {
-        console.log("Now processing: "+eachUser.data().name);
+      allSessions.forEach(function(eachSession) {
+        console.log("Now processing: "+eachSession.data().session_name);
 
         var row = document.createElement('tr');
  
@@ -134,25 +138,37 @@
         cellDummy.appendChild(document.createTextNode(i));
         
         var cellName = document.createElement('td');
-        cellName.appendChild(document.createTextNode(eachUser.data().name));
+        cellName.appendChild(document.createTextNode(eachSession.data().session_name));
         
-        var cellId = document.createElement('td');
-        cellId.appendChild(document.createTextNode(eachUser.data().unique_id));
+        var cellLocation = document.createElement('td');
+        cellLocation.appendChild(document.createTextNode(eachSession.data().session_location));
 
-        var cellPhone = document.createElement('td');
-        cellPhone.appendChild(document.createTextNode(eachUser.data().phone));
+        var cellStart = document.createElement('td');
+        cellStart.appendChild(document.createTextNode(eachSession.data().session_start));
+
+        var cellEnd = document.createElement('td');
+        cellEnd.appendChild(document.createTextNode(eachSession.data().session_end));
+
+        var cellOwner = document.createElement('td');
+        cellOwner.appendChild(document.createTextNode(eachSession.data().session_owner));
+        
+        var cellSecret = document.createElement('td');
+        cellSecret.appendChild(document.createTextNode(eachSession.data().session_secret));
 
         row.appendChild(cellNum);
         row.appendChild(cellDummy);
         row.appendChild(cellName);
-        row.appendChild(cellId);
-        row.appendChild(cellPhone);
+        row.appendChild(cellLocation);
+        row.appendChild(cellStart);
+        row.appendChild(cellEnd);
+        row.appendChild(cellOwner);
+        row.appendChild(cellSecret);
         tableBody.appendChild(row);
         i=i+1;                    
       })
 
     }).catch(function(e) {
-      console.log("Error fetching all existing user of "+orgName+" :", e);
+      console.log("Error fetching all existing sessions of "+orgId+" :", e);
     });
   }
   
