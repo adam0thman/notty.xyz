@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>i.M.Here | Blockchain Attendance System</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+  </head>
+  <body class="">
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <!-- Firebase Initi
+    ================================================== -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js"></script>
+    <script src="./js/firebase-init.js"></script>
+    <script>
+      const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+      var today = new Date();
+      var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      var lastLoginTimestamp = (today.getMonth()+1)+'-'+today.getDate()+', '+today.getFullYear()+' '+time;
+      console.log("lastLoginTimestamp is: "+lastLoginTimestamp);
+
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            db.collection("users").where("phone","==",user.phoneNumber)
+            .get().then(function(docu) {
+                if (docu.exists) {
+                    db.collection("users").where("phone","==",user.phoneNumber)
+                    .update({
+                        lastlogin: lastLoginTimestamp
+                    }).then(function() {
+                        window.location.replace(pageURL+pageMain);
+                    }).catch(function(e) {
+                        console.log("Error updating record:", e);
+                    });
+                } else {
+                    window.location.replace(pageURL+"/activate.html");
+                }
+            }).catch(function(e) {
+                console.log("Error checking user record in /users/:", e);
+            });
+        } else {
+          console.log("User NOT signed in!");
+        }
+      });
+
+
+    </script>
+  </body>
