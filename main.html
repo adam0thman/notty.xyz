@@ -25,6 +25,11 @@
                   <p class="text-muted">Welcome <holder>[username]</holder>! This is you Dashboard, for viewing your sessions, and your past attendance. In order to utilize i.M.Here, you would need to download the i.M.Here mobile app via Google Playstore or Apple Appstore. Also, ensure that your organization regisytrar has enrolled you in!</p>
                 </div>
                 <div class="col-sm-4 offset-md-1 py-4">
+                  <h4 class="text-white">Navigational</h4>
+                    <ul class="list-unstyled">
+                      <li><a href="main.html?v=manageUser" class="text-white">Manage Users</a></li>
+                      <li><a href="main.html?v=reportStatistic" class="text-white">Reports & Statistics</a></li>
+                    </ul>
                   <h4 class="text-white">Support + Contact</h4>
                   <ul class="list-unstyled">
                     <li><a href="#" class="text-white">Twitter Help @imhere_support</a></li>
@@ -121,5 +126,46 @@
           window.location.replace(pageURL);
         }
       });
+
+      // TYbale filter
+      (function(document) {
+        'use strict';
+
+        var LightTableFilter = (function(Arr) {
+
+          var _input;
+
+          function _onInputEvent(e) {
+            _input = e.target;
+            var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+            Arr.forEach.call(tables, function(table) {
+              Arr.forEach.call(table.tBodies, function(tbody) {
+                Arr.forEach.call(tbody.rows, _filter);
+              });
+            });
+          }
+
+          function _filter(row) {
+            var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+            row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+          }
+
+          return {
+            init: function() {
+              var inputs = document.getElementsByClassName('light-table-filter');
+              Arr.forEach.call(inputs, function(input) {
+                input.oninput = _onInputEvent;
+              });
+            }
+          };
+        })(Array.prototype);
+
+        document.addEventListener('readystatechange', function() {
+          if (document.readyState === 'complete') {
+            LightTableFilter.init();
+          }
+        });
+    })(document);
+
     </script>
   </body>

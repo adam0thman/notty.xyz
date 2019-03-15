@@ -1,0 +1,104 @@
+<h2 class="text-info">Manage Users <small class="text-muted">For <holder id="txt-org-name"></holder></small></h2>
+<hr class="mb-12">
+
+<form class="form-inline">
+  <div class="form-group mb-2">
+    <label for="staticfilter" class="sr-only">Search </label>
+    <input id="staticfilter"  type="search" class="form-control-plaintext light-table-filter" data-table="order-table" placeholder="Search keyword here..">
+  </div>
+</form>
+<div class="table-responsive">
+  <table class="sortable table table-striped table-hover table-sm order-table">
+    <caption>Existing users for <holder id="txt-org-name-table"></holder></caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th></th>
+        <th>Full Name</th>
+        <th>ID</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody id="allExistingUsers">
+    </tbody>
+  </table>
+</div>
+<hr class="mb-4">
+<center class="align-center">
+    <button type="button" class="btn btn-outline-primary">Add New User</button>
+    <button type="button" class="btn btn-outline-secondary">Bulk Add New User</button>
+</center>
+</main>
+
+<script>
+  console.log("Hello from "+window.location.pathname+window.location.search); 
+  
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log("user.providerData[0].phoneNumber.substring(1) is "+user.providerData[0].phoneNumber.substring(1));
+      
+      db.collection("users").where("phone","==",user.providerData[0].phoneNumber.substring(1))
+      .get().then(function(userData) {
+        userData.forEach(function(userSingle) {
+          console.log("Current userSingle is: "+userSingle.data().organization);
+          $('#txt-org-name').html(userSingle.data().organization);
+          $('#txt-org-name-table').html(userSingle.data().organization);
+          loadExistingUsers(userSingle.data().organization);
+        })
+      }).then(function() {
+        console.log("Err.... Done?");
+      }).catch(function(e) {
+        console.log("Error fetching user details: ", e);
+      });
+
+    } else {
+      console.log("User NOT signed in.");
+    }
+  });
+  
+  function loadExistingUsers(orgName) {
+    console.log("orgName requested is: "+orgName);
+    db.collection("users").where("organization","==",orgName)
+    .get().then(function(allUsers) {
+
+      var tableBody = document.getElementById('allExistingUsers');
+      while (tableBody.firstChild) {
+        tableBody.removeChild(tableBody.firstChild);
+      }
+      var i = 1;
+
+      allUsers.forEach(function(eachUser) {
+        console.log("Now processing: "+eachUser.data().name);
+
+        var row = document.createElement('tr');
+ 
+        var cellNum = document.createElement('td');
+        cellNum.appendChild(document.createTextNode(i));
+        
+        var cellDummy = document.createElement('td');
+        cellDummy.appendChild(document.createTextNode(i));
+        
+        var cellName = document.createElement('td');
+        cellName.appendChild(document.createTextNode(eachUser.data().name));
+        
+        var cellId = document.createElement('td');
+        cellId.appendChild(document.createTextNode(eachUser.data().unique_id));
+
+        var cellPhone = document.createElement('td');
+        cellPhone.appendChild(document.createTextNode(eachUser.data().phone));
+
+        row.appendChild(cellNum);
+        row.appendChild(cellDummy);
+        row.appendChild(cellName);
+        row.appendChild(cellId);
+        row.appendChild(cellPhone);
+        tableBody.appendChild(row);
+        i=i+1;                    
+      })
+
+    }).catch(function(e) {
+      console.log("Error fetching all existing user of "+orgName+" :", e);
+    });
+  }
+  
+</script>
