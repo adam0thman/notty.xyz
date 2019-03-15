@@ -140,6 +140,19 @@
           console.log("User phone number: "+user.phoneNumber);
           console.log("User provider: "+user.providerData[0].providerId);
           //window.location.replace(pageURL+pageMain);
+
+          db.collection("users").where("phone","==",String(user.phoneNumber.substring(1))).get()
+          .then(function(thisUser) {
+            thisUser.forEach(function(userDoc) {
+              if (!userDoc.data.status) {
+                window.location.replace(pageURL+"activate.html");
+              }
+            });
+          })
+          .catch(function(e) {
+            cobsole.log("Error: ",e);
+          });
+
         } else {
           console.log("User NOT signed in!");
           window.location.replace(pageURL);
