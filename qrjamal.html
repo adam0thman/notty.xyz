@@ -20,6 +20,8 @@
     <div class="container">
         <h5 id="theTitle"></h5>
         <br />
+        <h5 id="theActual"></h5>
+        <br />
         <center>
           <div id="qrcode"></div>
         </center>
@@ -62,6 +64,8 @@
       const dummyData64 = 'c2Vzc2lvbnMvVU1DLzIwMTktMy9OMU1nUllUWVh1R0M2d1RVa2hTU3xhYmNkZWYxMjM0NTYK';
       generateQR(dummyData64);
       $('#theTitle').text(dummyData64);
+      $('#theActual').text(dummyData);
+      
       function generateQR(input) {
         var qrcode = new QRCode(document.getElementById("qrcode"), {
           text: input,
