@@ -60,7 +60,9 @@
           }
       }
 
-      generateQR("abcdef123456");
+      const dummyData = 'sessions/UMC/2019-3/N1MgRYTYXuGC6wTUkhSS|abcdef123456';
+      const dummyData64 = 'c2Vzc2lvbnMvVU1DLzIwMTktMy9OMU1nUllUWVh1R0M2d1RVa2hTU3xhYmNkZWYxMjM0NTYK';
+      generateQR(dummyData64);
 
       function generateQR(input) {
         var qrcode = new QRCode(document.getElementById("qrcode"), {
