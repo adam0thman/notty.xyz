@@ -14,11 +14,6 @@
   // Initialize Cloud Firestore through Firebase
   var db = firebase.firestore();
     
-  // Disable deprecated features
-  db.settings({
-    timestampsInSnapshots: true
-  });
-    
   // Variables
   var pageURL = window.location.protocol+"//"+window.location.host;
   var pageLogin = "/login.html";
