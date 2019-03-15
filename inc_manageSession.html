@@ -65,7 +65,7 @@
 </div>
 <hr class="mb-4">
 <center class="align-center">
-    <button type="button" class="btn btn-outline-primary">Add New Session</button>
+    <button type="button" class="btn btn-outline-primary" id="btn-add-new" data-toggle="modal" data-target="#modal-add-session">Add New Session</button>
     <button type="button" class="btn btn-outline-secondary">Bulk Add Session</button>
 </center>
 </main>
@@ -100,6 +100,7 @@
           console.log("Current userSingle is: "+userSingle.data().organization);
           $('#txt-org-name').html(userSingle.data().organization);
           $('#txt-org-name-table').html(userSingle.data().organization);
+          $('#btn-add-new').attr("data-organization",userSingle.data().organization);
           sessionStorage.setItem("orgId", userSingle.data().organization_unique_id);
           loadExistingSessions(userSingle.data().organization_unique_id);
         })
@@ -174,4 +175,62 @@
     });
   }
   
+</script>
+
+<!--
+    MODAL: Add New Session
+-->
+<div class="modal fade" id="modal-add-session" tabindex="-1" role="dialog" aria-labelledby="modal-add-session-label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-add-session-label">Add New Session</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="session-name" class="col-form-label">Session Name:</label>
+            <input type="text" class="form-control" id="sessions-name" placeholder="Physics 101: Lab #2">
+          </div>
+          <div class="form-group">
+              <label for="session-org" class="col-form-label">Session Organization:</label>
+              <input type="text" class="form-control" id="session-org" readonly>
+          </div>
+          <div class="form-group">
+              <label for="session-location" class="col-form-label">Session Location:</label>
+              <input type="text" class="form-control" id="session-location" placeholder="UMCCeed Hall 1">
+          </div>
+          <div class="form-group">
+              <label for="session-start" class="col-form-label">Session Start:</label>
+              <input type="text" class="form-control" id="session-start" placeholder="March 18, 2019 09:00:00">
+          </div>
+          <div class="form-group">
+              <label for="session-end" class="col-form-label">Session End:</label>
+              <input type="text" class="form-control" id="session-end" placeholder="March 18, 2019 09:00:00">
+          </div>
+          <div class="form-group">
+              <label for="session-owner" class="col-form-label">Session Owner:</label>
+              <input type="text" class="form-control" id="session-owner">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add Session</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#modal-add-session').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var organization = button.data('organization') // Extract info from data-* attributes
+    var modal = $(this)
+    //modal.find('.modal-title').text('New message to ' + recipient)
+    modal.find('#session-org').val(organization)
+  })
 </script>
