@@ -20,12 +20,16 @@
   });
     
   // Variables
-  //var pageURL = window.location.protocol+"//"+window.location.host;
+  var pageURL = window.location.protocol+"//"+window.location.host;
   //var pageURL = 'https://www.streamshop.io';
-  var pageLogin = "/login.php";
-  var pageMain = "/main.php?v=main";
+  var pageLogin = "/login.html";
+  var pageMain = "/index.html?v=dashboard";
   var pageAdmin = "/admin.php?v=admin";
-    
+  console.log("pageURL is: "+pageURL);
+  console.log("pageLogin is: "+pageLogin);
+  console.log("pageMain is: "+pageMain);
+  console.log("pageAdmin is: "+pageAdmin);
+
   // Function for Logging out
   function callLogout() {
     firebase.auth().signOut().then(function() {
