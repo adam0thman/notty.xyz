@@ -11,57 +11,20 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="./css/custom.css" rel="stylesheet">
-    
+    <link href="./css/signin.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
   </head>
-  <body>
-
-      <header>
-          <div class="collapse bg-dark" id="navbarHeader">
-            <div class="container">
-              <div class="row">
-                <div class="col-sm-8 col-md-7 py-4">
-                  <h4 class="text-white">i.M.Here</h4>
-                  <p class="text-muted">Welcome <holder>[username]</holder>! This is you Dashboard, for viewing your sessions, and your past attendance. In order to utilize i.M.Here, you would need to download the i.M.Here mobile app via Google Playstore or Apple Appstore. Also, ensure that your organization regisytrar has enrolled you in!</p>
-                </div>
-                <div class="col-sm-4 offset-md-1 py-4">
-                  <h4 class="text-white">Support + Contact</h4>
-                  <ul class="list-unstyled">
-                    <li><a href="#" class="text-white">Twitter Help @imhere_support</a></li>
-                    <li><a href="#" class="text-white">Email Support</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="navbar navbar-dark bg-dark box-shadow">
-            <div class="container d-flex justify-content-between">
-              <a href="#" class="navbar-brand d-flex align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                <strong>i.M.Here</strong>
-              </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-            </div>
-          </div>
-        </header>
-
-    <main role="main">
-      <br />
-      <br />
-      <div class="container">
-        <holder id="page-content"></holder>
-      </div>
-
-      <!-- FOOTER -->
-      <footer class="container">
-        <hr class="mb-12" >
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017-2019 WTW Fintech Sdn Bhd &middot; <a href="#">Data Privacy Policy</a> &middot; <a href="#">Terms of Use</a></p>
-      </footer>
-      
-    </main>
+  <body class="text-center">
+      <form class="form-signin">
+        <i class="mb-4 fas fa-qrcode fa-6x"></i>
+        <h1 class="h3 mb-3 font-weight-normal">i.<text class="text-danger">M</text>.Here</h1>
+        <div id="firebaseui-auth-container"></div>
+        <div id="loader">Loading...</div>
+        <br />
+        <p class="mt-5 mb-3 text-muted">&copy; 2017-2019 WTW Fintech Sdn Bhd &middot; <a href="#">Data Privacy Policy</a> &middot; <a href="#">Terms of Use</a>/p>
+      </form>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -73,48 +36,47 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js"></script>
-    <script src="./js/firebase-app-init.js"></script>
-    <!-- Main Scirptiing
-    ================================================= -->
+    <script src="./js/firebase-init.js"></script>
     <script>
-      function getParameterByName(name) {
-          if (name !== "" && name !== null && name != undefined) {
-              name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-              var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                  results = regex.exec(location.search);
-              return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-          } else {
-              var arr = location.href.split("/");
-              return arr[arr.length - 1];
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      var uiConfig = {
+        callbacks: {
+          signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+            // User successfully signed in.
+            // Return type determines whether we continue the redirect automatically
+            // or whether we leave that to developer to handle.
+            return true;
+          },
+          uiShown: function() {
+            // The widget is rendered.
+            // Hide the loader.
+            document.getElementById('loader').style.display = 'none';
           }
-      }
-      
-      $(function() {
-        var pagetoLoad;
-        if (getParameterByName('v')) {
-          pageToLoad = 'inc_'+getParameterByName('v')+'.html';
-          console.log('Loading '+getParameterByName('v')+'..');
-        } else {
-          console.log('Defaulting to Dashboard..');
-          pageToLoad = 'inc_dashboard.html';
-        }
-        // Load the actual content page
-        $('#page-content').load(pageToLoad);
-      })
-      
-      $("#btn-logout").on('click', function() {
-        firebase.auth().signOut().then(function() {
-          window.location.replace(pageURL+pageLogin);
-        }).catch(function(error) {
-          console.log("Error signing out.");
-        });
-      })
-      
+        },
+        // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+        signInFlow: 'popup',
+        signInSuccessUrl: pageURL+pageMain,
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+          firebase.auth.PhoneAuthProvider.PROVIDER_ID
+        ],
+        // Terms of service url.
+        tosUrl: '<your-tos-url>',
+        // Privacy policy url.
+        privacyPolicyUrl: '<your-privacy-policy-url>'
+      };
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
+
       firebase.auth().onAuthStateChanged(function(user) {
-        if (!user) {
-          console.log("User not logged in.");
-          //window.location.replace("https://www.jasabyte.com/livestock2/login.html");
+        if (user) {
+          window.location.replace(pageURL+pageMain);
+        } else {
+          console.log("User NOT signed in!");
         }
       });
+
+
     </script>
   </body>

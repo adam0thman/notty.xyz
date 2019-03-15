@@ -17,8 +17,8 @@
   // Variables
   var pageURL = window.location.protocol+"//"+window.location.host;
   var pageLogin = "/login.html";
-  var pageMain = "/index.html?v=dashboard";
-  var pageAdmin = "/admin.php?v=admin";
+  var pageMain = "/main.html";
+  var pageAdmin = "/admin.html";
   console.log("pageURL is: "+pageURL);
   console.log("pageLogin is: "+pageLogin);
   console.log("pageMain is: "+pageMain);
