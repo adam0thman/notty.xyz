@@ -39,12 +39,12 @@
               <a class="nav-link" href="#">Reports & Statistics</a>
             </li>
           </ul>
-          <!--
           <form class="form-inline mt-2 mt-md-0">
+            <!--
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            -->
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="btn-logout">Logout</button>
           </form>
-          -->
         </div>
       </nav>
     </header>
@@ -52,7 +52,7 @@
     <main role="main">
       
       <div class="container">
-        Hello! :)
+        <holder class="page-content"></holder>
       </div>
 
       <!-- FOOTER -->
@@ -74,4 +74,46 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js"></script>
     <script src="./js/firebase-initialization.js"></script>
+    <!-- Main Scirptiing
+    ================================================= -->
+    <script>
+      function getParameterByName(name) {
+          if (name !== "" && name !== null && name != undefined) {
+              name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+              var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                  results = regex.exec(location.search);
+              return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+          } else {
+              var arr = location.href.split("/");
+              return arr[arr.length - 1];
+          }
+      }
+      
+      $(function() {
+        var pagetoLoad;
+        if (getParameterByName('v')) {
+          pageToLoad = 'inc_'+getParameterByName('v')+'.html';
+          console.log('Loading '+getParameterByName('v')+'..');
+        } else {
+          console.log('Defaulting to Dashboard..');
+          pageToLoad = 'inc_dashboard.html';
+        }
+        // Load the actual content page
+        $('#page-content').load(pageToLoad);
+      })
+      
+      $("#btn-logout").on('click', function() {
+        firebase.auth().signOut().then(function() {
+          window.location.replace("https://www.jasabyte.com/livestock2/login.html");
+        }).catch(function(error) {
+          console.log("Error signing out.");
+        });
+      })
+      
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (!user) {
+          window.location.replace("https://www.jasabyte.com/livestock2/login.html");
+        }
+      });
+    </script>
   </body>
