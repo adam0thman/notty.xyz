@@ -11,9 +11,22 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <link href="./css/signin.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="./js/qrcode.js"></script>
   </head>
-  <body class="">
+  <body class="text-center">
+
+    <div class="container">
+        <h3 id="title"></h3>
+        <br />
+        <h6 id="subtitle"></h6>
+        <br />
+        <center>
+          <div id="qrcode"></div>
+        </center>
+    </div>
+      
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -26,42 +39,38 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js"></script>
     <script src="./js/firebase-init.js"></script>
-    <script>
-
-      console.log("Hello from "+window.location.pathname+window.location.search);  
-
+    <script type="text/javascript">
+      
       const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
       var today = new Date();
       var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+      console.log("date is: "+date);
       var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-      var lastLoginTimestamp = monthNames[today.getMonth()]+' '+today.getDate()+', '+today.getFullYear()+' '+time;
-      console.log("lastLoginTimestamp is: "+lastLoginTimestamp);
+      var dateTime = date+' '+time;
 
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            console.log("User "+user.phoneNumber+' is logged in.');
-            db.collection("users").where("phone","==",user.phoneNumber.substring(1))
-            .get().then(function(docu) {
-                console.log("docu is: "+docu.length);
-                docu.forEach(function(eachDoc) {
-                    console.log("eachDoc.id is: "+eachDoc.id);
-                    db.collection("users").doc(eachDoc.id)
-                    .update({
-                        lastlogin: lastLoginTimestamp
-                    }).then(function() {
-                        window.location.replace(pageURL+pageMain);
-                    }).catch(function(e) {
-                        console.log("Error updating record:", e);
-                    });
-                });
-            }).catch(function(e) {
-                console.log("Error checking user record in /users/:", e);
-            });
-        } else {
-          console.log("User NOT signed in!");
-        }
-      });
+      function getParameterByName(name) {
+          if (name !== "" && name !== null && name != undefined) {
+              name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+              var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                  results = regex.exec(location.search);
+              return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+          } else {
+              var arr = location.href.split("/");
+              return arr[arr.length - 1];
+          }
+      }
 
+      generateQR("abcdef123456");
 
+      function generateQR(input) {
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+          text: input,
+          width: 528,
+          height: 528,
+          colorDark : "#000000",
+          colorLight : "#ffffff",
+          correctLevel : QRCode.CorrectLevel.H
+        });
+      }
     </script>
   </body>

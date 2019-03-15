@@ -70,7 +70,7 @@
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           console.log("User LOGGED in!");
-          //window.location.replace(pageURL+pageMain);
+          window.location.replace(pageURL+'/process.html');
         } else {
           console.log("User NOT signed in!");
         }
