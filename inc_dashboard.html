@@ -43,6 +43,7 @@
     <thead>
       <tr>
         <th>#</th>
+        <th></th>
         <th>Session Name</th>
         <th>Session Start</th>
         <th>Session Location</th>
@@ -150,6 +151,9 @@
         var cellNum = document.createElement('td');
         cellNum.appendChild(document.createTextNode(i));
         
+        var cellAction = document.createElement('td');
+        cellAction.innerHTML = '<a href="qr.html?o='+orgId+'&amp;d='+eachSession.id+'" target="_blank" class="text-success" data-toggle="tooltip" data-placement="right" title="Click here to initiate class attendance QR code."><i class="fas fa-play"></i></a>';
+
         var cellName = document.createElement('td');
         cellName.appendChild(document.createTextNode(eachSession.data().session_name));
         
@@ -160,6 +164,7 @@
         cellLocation.appendChild(document.createTextNode(eachSession.data().session_location));
 
         row.appendChild(cellNum);
+        row.appendChild(cellAction);
         row.appendChild(cellName);
         row.appendChild(cellStart);
         row.appendChild(cellLocation);
@@ -170,6 +175,9 @@
     }).then(function() {
       $('#btn-show-conducting').hide();
       console.log("Done fetching all sessions.");
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
     }).catch(function(e) {
       console.log("Error fetching all sessions of "+userId+" :", e);
     });
