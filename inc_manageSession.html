@@ -148,10 +148,10 @@
         cellLocation.appendChild(document.createTextNode(eachSession.data().session_location));
 
         var cellStart = document.createElement('td');
-        cellStart.appendChild(document.createTextNode(eachSession.data().session_start));
+        cellStart.appendChild(document.createTextNode(timeConverter(eachSession.data().session_start["seconds"])));
 
         var cellEnd = document.createElement('td');
-        cellEnd.appendChild(document.createTextNode(eachSession.data().session_end));
+        cellEnd.appendChild(document.createTextNode(timeConverter(eachSession.data().session_end["seconds"])));
 
         var cellOwner = document.createElement('td');
         cellOwner.appendChild(document.createTextNode(eachSession.data().session_owner));

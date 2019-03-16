@@ -43,7 +43,7 @@
           </div>
           <div class="navbar navbar-dark bg-dark box-shadow">
             <div class="container d-flex justify-content-between">
-              <a href="#" class="navbar-brand d-flex align-items-center">
+              <a href="main.html" class="navbar-brand d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
                 <strong>i.<text class="text-danger">M</text>.Here</strong>
               </a>
@@ -96,6 +96,20 @@
       console.log("date is: "+date);
       var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
       var dateTime = date+' '+time;
+      
+      function timeConverter(UNIX_timestamp){
+        var a = new Date(UNIX_timestamp * 1000);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var hour = '0'+a.getHours();
+        var min = '0'+a.getMinutes();
+        var sec = '0'+a.getSeconds();
+        var time = month+' '+date+' / '+hour.slice(-2)+':'+min.slice(-2);
+        return time;
+      }
+      //console.log('Time converted: '+timeConverter(1553385600));
 
       function upFirst(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
@@ -141,10 +155,11 @@
           console.log("User provider: "+user.providerData[0].providerId);
           //window.location.replace(pageURL+pageMain);
 
-          db.collection("users").where("phone","==",String(user.phoneNumber.substring(1))).get()
-          .then(function(thisUser) {
+          db.collection("users").where("phone","==",String(user.phoneNumber.substring(1)))
+          .get().then(function(thisUser) {
             thisUser.forEach(function(userDoc) {
-              if (!userDoc.data.status) {
+              console.log("User status is: "+userDoc.data().status);
+              if (!userDoc.data().status) {
                 window.location.replace(pageURL+"/activate.html");
               }
             });

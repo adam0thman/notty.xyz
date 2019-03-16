@@ -1,4 +1,5 @@
-<h2 class="text-info">Manage Users <small class="text-muted">For <holder id="txt-org-name"></holder></small></h2>
+<h2 class="text-info">Manage Users <small class="text-muted">For <holder id="txt-org-name"></holder></small> <button class="btn btn-outline-secondary" id="btn-show-users" disabled="disabled">Show Users</button></h2>
+
 <hr class="mb-12">
 
 <form class="form-inline">
@@ -28,7 +29,66 @@
     <button type="button" class="btn btn-outline-primary" id="btn-add-new" data-toggle="modal" data-target="#modal-add-user">Add New User</button>
     <button type="button" class="btn btn-outline-secondary">Bulk Add New User</button>
 </center>
-</main>
+
+
+<!--
+    MODAL: Add New User
+-->
+<div class="modal fade" id="modal-add-user" tabindex="-1" role="dialog" aria-labelledby="modal-add-user-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-add-user-label">Add & Assigned New User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="session-name" class="col-form-label">Session Name:</label>
+              <input type="text" class="form-control" id="sessions-name" placeholder="Physics 101: Lab #2">
+            </div>
+            <div class="form-group">
+              <label for="session-location" class="col-form-label">Session Location:</label>
+              <input type="text" class="form-control" id="sessions-location" placeholder="Physics 101: Lab #2">
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-6">
+                    <label for="session-start" class="col-form-label">Session Start:</label>
+                    <input type="text" class="form-control" id="sessions-start" placeholder="">
+              </div>
+              <div class="form-group col-sm-6">
+                  <label for="session-end" class="col-form-label">Session End:</label>
+                  <input type="text" class="form-control" id="sessions-end" placeholder="">
+            </div>
+          </div> <!-- ./row-->
+          <div class="form-group">
+              <hr class="mb-4" >
+              <span class="text-muted">This class owner will be set to <holder id="txt-owner-name"></holder></span>
+              <hr class="mb-4" >
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Add & Assign User</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    $('#modal-add-user').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var organization = button.data('organization') // Extract info from data-* attributes
+      var modal = $(this)
+      modal.find('.modal-title').text(organization+': Add & Assign New User')
+      //modal.find('#session-org').val(organization)
+    })
+  </script>
+
 
 <script>
   console.log("Hello from "+window.location.pathname+window.location.search); 
@@ -45,10 +105,13 @@
           $('#txt-org-name').html(userSingle.data().organization);
           $('#txt-org-name-table').html(userSingle.data().organization);
           $('#btn-add-new').attr("data-organization",userSingle.data().organization);
-          loadExistingUsers(userSingle.data().organization);
+          $('#btn-owner-name').html(userSingle.data().name);
+          $('#btn-show-users').attr("onClick", 'loadExistingUsers("'+userSingle.data().organization+'")');
+          //loadExistingUsers(userSingle.data().organization);
         })
       }).then(function() {
         console.log("Err.... Done?");
+        $('#btn-show-users').removeAttr('disabled');
       }).catch(function(e) {
         console.log("Error fetching user details: ", e);
       });
@@ -98,47 +161,11 @@
         i=i+1;                    
       })
 
+    }).then(function() {
+      $('#btn-show-users').hide();
     }).catch(function(e) {
       console.log("Error fetching all existing user of "+orgName+" :", e);
     });
   }
   
 </script>
-
-<!--
-    MODAL: Add New User
--->
-<div class="modal fade" id="modal-add-user" tabindex="-1" role="dialog" aria-labelledby="modal-add-user-label" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modal-add-user-label">Add & Assigned New User</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="session-name" class="col-form-label">Session Name:</label>
-              <input type="text" class="form-control" id="sessions-name" placeholder="Physics 101: Lab #2">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Add & Assign User</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <script>
-    $('#modal-add-user').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget) // Button that triggered the modal
-      var organization = button.data('organization') // Extract info from data-* attributes
-      var modal = $(this)
-      modal.find('.modal-title').text(organization+': Add & Assign New User')
-      //modal.find('#session-org').val(organization)
-    })
-  </script>
