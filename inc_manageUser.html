@@ -38,7 +38,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modal-add-user-label">Add & Assigned New User</h5>
+          <h5 class="modal-title" id="modal-add-user-label">Add New User</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -46,26 +46,28 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label for="session-name" class="col-form-label">Session Name:</label>
-              <input type="text" class="form-control" id="sessions-name" placeholder="Physics 101: Lab #2">
-            </div>
-            <div class="form-group">
-              <label for="session-location" class="col-form-label">Session Location:</label>
-              <input type="text" class="form-control" id="sessions-location" placeholder="Physics 101: Lab #2">
+              <label for="user-name" class="col-form-label">Full Name:</label>
+              <input type="text" class="form-control" id="user-name" placeholder="Eg: Muhammad Bin Abdullah">
             </div>
             <div class="row">
               <div class="form-group col-sm-6">
-                    <label for="session-start" class="col-form-label">Session Start:</label>
-                    <input type="text" class="form-control" id="sessions-start" placeholder="">
+                    <label for="user-mobile-country" class="col-form-label">Country Code:</label>
+                    <select class="form-control">
+                      <option value="60">Malaysia (+60)</option>
+                    </select>
               </div>
               <div class="form-group col-sm-6">
-                  <label for="session-end" class="col-form-label">Session End:</label>
-                  <input type="text" class="form-control" id="sessions-end" placeholder="">
+                  <label for="user-mobile" class="col-form-label">Mobile Number:</label>
+                  <input type="text" class="form-control" id="user-mobile" placeholder="Ex: 122557193">
             </div>
           </div> <!-- ./row-->
+            <div class="form-group">
+              <label for="user-id" class="col-form-label">Student ID:</label>
+              <input type="text" class="form-control" id="user-ic" placeholder="Eg: UMC123456">
+            </div>
           <div class="form-group">
               <hr class="mb-4" >
-              <span class="text-muted">This class owner will be set to <holder id="txt-owner-name"></holder></span>
+              <span class="text-muted">This user <text class="text-dark">Organization</text> will be set to <holder class="text-dark" id="txt-org-name-modal"></holder>.</span>
               <hr class="mb-4" >
             </div>
           </form>
@@ -105,7 +107,7 @@
           $('#txt-org-name').html(userSingle.data().organization);
           $('#txt-org-name-table').html(userSingle.data().organization);
           $('#btn-add-new').attr("data-organization",userSingle.data().organization);
-          $('#btn-owner-name').html(userSingle.data().name);
+          $('#txt-org-name-modal').html(userSingle.data().organization);
           $('#btn-show-users').attr("onClick", 'loadExistingUsers("'+userSingle.data().organization+'")');
           //loadExistingUsers(userSingle.data().organization);
         })
@@ -140,9 +142,14 @@
         var cellNum = document.createElement('td');
         cellNum.appendChild(document.createTextNode(i));
         
-        var cellDummy = document.createElement('td');
-        cellDummy.innerHTML = '<i class="far fa-trash-alt text-danger"></i>';
+        var cellDelete = document.createElement('td');
+        cellDelete.innerHTML = '<button class="btn btn-small" '+
+                               'onClick="deleteUser("'+orgName+'","'+eachUser.data().unique_id.trim()+'")">'+
+                               '<i class="far fa-trash-alt text-danger"></i>'+
+                               '</button>';
+        //cellDelete.innerHTML = '<button class="btn btn-small" onClick="adam()"><i class="far fa-trash-alt text-danger"></i></button>';
         
+
         var cellName = document.createElement('td');
         cellName.appendChild(document.createTextNode(eachUser.data().name));
         
@@ -153,7 +160,7 @@
         cellPhone.appendChild(document.createTextNode(eachUser.data().phone));
 
         row.appendChild(cellNum);
-        row.appendChild(cellDummy);
+        row.appendChild(cellDelete);
         row.appendChild(cellName);
         row.appendChild(cellId);
         row.appendChild(cellPhone);
@@ -168,4 +175,18 @@
     });
   }
   
+function deleteUser(userId, orgName) {
+  document.preventDefault()
+  db.collection("users/").doc(userId).delete().then(function() {
+    console.log("Deleted user "+userId);
+    loadExistingUsers(orgName);
+  }).catch(function(e) {
+    console.log("Error deleting user "+userId+": ",e);
+  });
+}
+
+function adam() {
+  console.log("Adam clicked!");
+}
+
 </script>
