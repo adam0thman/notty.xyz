@@ -27,6 +27,10 @@
         <center>
           <div id="qrcode"></div>
         </center>
+        <br />
+        <center>
+          <button class="btn btn-outline-primary" id="btn-end-session">End this Session</button>
+        </center>
     </div>
       
 
@@ -85,16 +89,16 @@
       setInterval(function() {
         
         var secretText = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
-
         //console.log("Now "+new Date);
         //document.getElementById("secret").innerHTML = secretText;
         //console.log("Text is "+secretText);
 
         db.collection("sessions/"+getParameterByName('o')+"/2019-3/").doc(getParameterByName('d'))
         .update({
-          session_secret: secretText
+          session_secret: "sessions/"+getParameterByName('o')+"/2019-3/"+getParameterByName('d')+"|"+secretText
         }).then(function() {
           console.log("Done change new secret.");
+          //document.getElementById("secret").innerHTML = "sessions/"+getParameterByName('o')+"/2019-3/"+getParameterByName('d')+"|"+secretText;
         }).catch(function(e) {
           console.log("Error change new secret: ", e);
         });
@@ -110,6 +114,11 @@
           colorLight : "#ffffff",
           correctLevel : QRCode.CorrectLevel.H
         });
+      }
+
+      function endSession() {
+        db.collection().doc()
+
       }
     </script>
   </body>
