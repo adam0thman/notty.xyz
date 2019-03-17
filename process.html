@@ -49,6 +49,18 @@
                     .update({
                         lastlogin: lastLoginTimestamp
                     }).then(function() {
+                        console.log("Done update last login");
+                        //window.location.replace(pageURL+pageMain);
+                    }).catch(function(e) {
+                        console.log("Error updating record:", e);
+                    });
+
+                    db.collection("auth_users").doc(user.phoneNumber.substring(1))
+                    .set({
+                        active: true,
+                        updated: lastLoginTimestamp
+                    }).then(function() {
+                        console.log("Done update auth_users");
                         window.location.replace(pageURL+pageMain);
                     }).catch(function(e) {
                         console.log("Error updating record:", e);
