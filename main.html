@@ -145,6 +145,7 @@
       
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
+          console.log(JSON.stringify(user));
           console.log("User uid: "+user.uid);
           console.log("User phone number: "+user.phoneNumber);
           console.log("User provider: "+user.providerData[0].providerId);
