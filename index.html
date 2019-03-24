@@ -33,7 +33,7 @@
         </div>
         <hr class="mb-6">
         <p><small><a href="#">Lupa Email / Kata Laluan</a></small></p>
-        <p><small><a href="#">Daftar Akaun Baru</a></small></p>
+        <p><small><a href="register.html">Daftar Akaun Baru</a></small></p>
         <div id="div-error"></div>
         <hr class="mb-6">
         <p class="mb-6 font-weight-normal text-secondary">Atau daftar masuk dengan akaun social media berikut:</p>
@@ -134,6 +134,7 @@
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           console.log("User LOGGED in!");
+          //$('#div-signout').text('Sign out from '+user.provider);
           $('#div-signout').show();
           //window.location.replace(pageURL+'/process.html');
         } else {
