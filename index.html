@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>The MORHA Family</title>
+    <title>Keluarga MORHA</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -15,9 +15,38 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
   <body class="text-center">
-      <form class="form-signin">
-        <i class="mb-4 fas fa-qrcode fa-6x"></i>
-        <h1 class="h3 mb-3 font-weight-normal">The Morha Family</h1>
+      <form class="form-signin" autocomplete="off">
+        <div class="flex-nowrap mb-12">
+          <img src="https://online.morhabshi.com/morha-logo.jpg" height="90px" />
+        </div>
+        <br />
+        <h3 class="mb-6 font-weight-normal">Keluarga MORHA.</h3>
+        <p class="mb-6 font-weight-normal text-secondary">Daftar masuk dan nikmati keriangan :)</p>
+        <div class="input-group flex-nowrap mb-3">
+          <input type="email" class="form-control" id="email" placeholder="Email" aria-label="Email" aria-describedby="addon-wrapping">
+        </div>
+        <div class="input-group flex-nowrap mb-3">
+          <input type="password" class="form-control" id="password" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">
+        </div>
+        <div class="input">
+          <button class="btn btn-outline-success mx-1" id="btn-login" type="button">Daftar Masuk</button>
+        </div>
+        <hr class="mb-6">
+        <p><small><a href="#">Lupa Email / Kata Laluan</a></small></p>
+        <p><small><a href="#">Daftar Akaun Baru</a></small></p>
+        <div id="div-error"></div>
+        <hr class="mb-6">
+        <p class="mb-6 font-weight-normal text-secondary">Atau daftar masuk dengan akaun social media berikut:</p>
+        <div class="text-center">
+            <a href="#" id="btn-google"><i class="fab fa-google fa-2x mx-2 text-secondary"></i></a>
+            <a href="#" id="btn-facebook"><i class="fab fa-facebook fa-2x mx-2 text-secondary"></i></a>
+            <a href="#"><i class="fab fa-twitter fa-2x mx-2 text-secondary"></i></a>
+        </div>
+        <div class="text-center" id="div-signout">
+            <br />
+            <a href="#" id="btn-signout" onclick="callLogout()">Sign Out</a>
+        </div>
+
       </form>
 
     <!-- Bootstrap core JavaScript
@@ -33,15 +62,85 @@
     <script src="./js/firebase-init.js"></script>
     <script>
 
+      let inputEmail = $('#email');
+      let inputPassword = $('#password');
+      let btnLogin = $('#btn-login');
+      let divError = $('#div-error');
+      let btnGoogle = $('#btn-google');
+      let btnFacebook = $('#btn-facebook');
+
+      btnLogin.on('click', function() {
+        console.log("btnLogin clicked!");
+        divError.empty();
+        firebase.auth().signInWithEmailAndPassword(inputEmail.val(), inputPassword.val()).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log(errorCode+' '+errorMessage);
+          divError.html('<div class="alert alert-danger">'+errorCode+' '+errorMessage+'</div>');
+        });
+      })
+
+      btnGoogle.on('click', function() {
+        console.log("btnGoogle clicked!");
+        divError.empty();
+        var provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          var token = result.credential.accessToken;
+          // The signed-in user info.
+          var user = result.user;
+          console.log("User is: "+user);
+          console.log("Token is: "+token);
+          // ...
+        }).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+          // ...
+          divError.html('<div class="alert alert-danger">'+errorCode+' '+errorMessage+' '+email+' '+credential+'</div>');
+        });
+      })
+
+      btnFacebook.on('click', function() {
+        console.log("btnFacebook clicked!");
+        divError.empty();
+        var provider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          var token = result.credential.accessToken;
+          // The signed-in user info.
+          var user = result.user;
+          console.log("User is: "+user);
+          console.log("Token is: "+token);
+          // ...
+        }).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+          // ...
+          divError.html('<div class="alert alert-danger">'+errorCode+' '+errorMessage+' '+email+' '+credential+'</div>');
+        });
+      })
+
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           console.log("User LOGGED in!");
-          window.location.replace(pageURL+'/process.html');
+          $('#div-signout').show();
+          //window.location.replace(pageURL+'/process.html');
         } else {
+          $('#div-signout').hide();
           console.log("User NOT signed in!");
         }
       });
-
 
     </script>
   </body>

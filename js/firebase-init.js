@@ -1,11 +1,11 @@
 // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyDGsek6bhfTV0UvMQO3ZkfLI27rh5Db0DI",
-    authDomain: "imhere-5e2dc.firebaseapp.com",
-    databaseURL: "https://imhere-5e2dc.firebaseio.com",
-    projectId: "imhere-5e2dc",
-    storageBucket: "imhere-5e2dc.appspot.com",
-    messagingSenderId: "932669852417"
+    apiKey: "AIzaSyDXvI4NJFwWTP5rHFCxY_WGPna3cKIVmV8",
+    authDomain: "morhabshi-e9680.firebaseapp.com",
+    databaseURL: "https://morhabshi-e9680.firebaseio.com",
+    projectId: "morhabshi-e9680",
+    storageBucket: "morhabshi-e9680.appspot.com",
+    messagingSenderId: "704004043273"
   };
   
   //Initialize main firebase app
