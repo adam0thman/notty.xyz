@@ -320,6 +320,43 @@
         </div>
       </div>
     </div>
+
+    <!-- 
+      Modal #Step3
+    -->
+    <div class="modal fade" id="modalStep3" tabindex="-1" role="dialog" aria-labelledby="modalStep3Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalStep3Label">Sila nyatakan Kod Ahli referrer anda:</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="my-4">
+                <div class="row">
+                  <div class="col-md-12 mb-3">
+                    <label for="inputReferrer">No Kod Ahli Referrer Anda:</label>
+                    <input type="text" class="form-control" id="inputReferrer" placeholder="" required>
+                    <div class="invalid-feedback">
+                      Masukkan maklumat referrer anda.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-check my-2">
+                    <input type="checkbox" class="form-check-input" id="inputNoReferrer">
+                    <label class="form-check-label" for="inputNoReferrer">Saya tidak ada referrer. </label>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-outline-primary" id="btnToStep4">Selanjutnya <i class="fas fa-long-arrow-alt-right"></i></button>
+            </div>
+          </div>
+        </div>
+    </div>
       
 
     <!-- Bootstrap core JavaScript
@@ -364,6 +401,11 @@
         }, false);
       })();
 
+      $('[data-dismiss="modal"]').on('click', function (event) {
+        console.log("I have been dismissed!");
+        location.reload();
+      })
+
       function proceedToStep2() {
         $('inputName').prop("readonly", true);
         $('inputEmail').prop("readonly", true);
@@ -371,7 +413,6 @@
           backdrop: 'static',
           keyboard: false
         });
-        //$('#modalStep2').modal('show');
       }
 
       $('#modalStep2').on('show.bs.modal', function (event) {
@@ -409,6 +450,31 @@
         }
       })
 
+      $('#btnToStep3').on('click', function() {
+        $('#modalStep2').modal('hide');
+        $('#modalStep3').modal({
+          backdrop: 'static',
+          keyboard: false
+        });
+      })
+
+      $('#modalStep3').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var modal = $(this)
+        console.log("Modal step 3 launched!");
+      })
+
+      $('#inputNoReferrer').on('change', function() {
+        if ( $(this).is(':checked')) {
+          console.log("No referrer is checked.");
+          $('#inputReferrer').val('MORHA');
+          $('#inputReferrer').prop('disabled', true);
+        } else {
+          console.log("No referrer is NOT checked.");
+          $('#inputReferrer').removeAttr('disabled');
+          $('#inputReferrer').val('');
+        }
+      })
 
     </script>
   </body>
