@@ -16,7 +16,7 @@
     
   // Variables
   var pageURL = window.location.protocol+"//"+window.location.host;
-  var pageLogin = "/login.html";
+  var pageLogin = "/index.html";
   var pageMain = "/main.html";
   var pageAdmin = "/admin.html";
   console.log("pageURL is: "+pageURL);
@@ -27,7 +27,7 @@
   // Function for Logging out
   function callLogout() {
     firebase.auth().signOut().then(function() {
-      window.location.replace(pageURL+pageMain);
+      window.location.replace(pageURL+pageLogin);
     }).catch(function(error) {
       console.log(error);
     });
