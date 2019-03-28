@@ -17,42 +17,7 @@
   </head>
   <body>
 
-      <header>
-          <div class="collapse bg-dark" id="navbarHeader">
-            <div class="container">
-              <div class="row">
-                <div class="col-sm-8 col-md-7 py-4">
-                  <h4 class="text-white">i.M.Here</h4>
-                  <p class="text-secondary">Welcome <holder id="txt-name-top"></holder>! This is you Dashboard, for viewing your sessions, and your past attendance. In order to utilize i.M.Here, you would need to download the i.M.Here mobile app via Google Playstore or Apple Appstore. Also, ensure that your organization regisytrar has enrolled you in!</p>
-                </div>
-                <div class="col-sm-4 offset-md-1 py-4">
-                  <h4 class="text-white">Navigational</h4>
-                    <ul class="list-unstyled">
-                      <li><a href="main.html?v=manageUser" class="text-white">Manage Users</a></li>
-                      <li><a href="main.html?v=manageSession" class="text-white">Manage Sessions</a></li>
-                      <li><a href="main.html?v=reportStatistic" class="text-white">Reports & Statistics</a></li>
-                    </ul>
-                  <h4 class="text-white">Support + Contact</h4>
-                  <ul class="list-unstyled">
-                    <li><a href="#" class="text-white">Twitter Help @imhere_support</a></li>
-                    <li><a href="#" class="text-white">Email Support</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="navbar navbar-dark bg-dark box-shadow">
-            <div class="container d-flex justify-content-between">
-              <a href="main.html" class="navbar-brand d-flex align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                <strong>i.<text class="text-danger">M</text>.Here</strong>
-              </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-            </div>
-          </div>
-        </header>
+      
 
     <main role="main">
       
@@ -64,8 +29,8 @@
       <!-- FOOTER -->
       <footer class="container">
         <hr class="mb-12" >
-        <p class="float-right"><a href="#" class="text-muted" id="btn-logout">Logout</a></p>
-        <p>&copy; 2017-2019 WTW Fintech Sdn Bhd &middot; <a href="privacy.html">Data Privacy Policy</a> &middot; <a href="#">Terms of Use</a></p>
+        <p class="float-right"><a href="#" class="text-muted" id="btn-logout">Daftar Keluar</a></p>
+        <p>&copy; 2010-2019 Jasabyte Technologies Sdn Bhd &middot; <a href="privacy.html">Polisi Data Privasi</a> &middot; <a href="#">Terma Pengunaan</a></p>
       </footer>
       
     </main>
@@ -145,24 +110,9 @@
       
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-          console.log(JSON.stringify(user));
-          console.log("User uid: "+user.uid);
-          console.log("User phone number: "+user.phoneNumber);
-          console.log("User provider: "+user.providerData[0].providerId);
-          //window.location.replace(pageURL+pageMain);
-
-          db.collection("users").where("phone","==",String(user.phoneNumber.substring(1)))
-          .get().then(function(thisUser) {
-            thisUser.forEach(function(userDoc) {
-              console.log("User status is: "+userDoc.data().status);
-              if (!userDoc.data().status) {
-                window.location.replace(pageURL+"/activate.html");
-              }
-            });
-          })
-          .catch(function(e) {
-            cobsole.log("Error: ",e);
-          });
+          
+          console.log("Hello! i am in MAIN and i am logged in!");
+          //console.log(JSON.stringify(user.email));
 
         } else {
           console.log("User NOT signed in!");

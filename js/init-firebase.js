@@ -27,8 +27,9 @@
   // Function for Logging out
   function callLogout() {
     firebase.auth().signOut().then(function() {
+      console.log("User has been Signed Out!");
       window.location.replace(pageURL+pageLogin);
-    }).catch(function(error) {
-      console.log(error);
+    }).catch(function(e) {
+      console.log("Error signing out:",e);
     });
   }

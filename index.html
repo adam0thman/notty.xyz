@@ -1,147 +1,164 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
 
-    <title>Keluarga MORHA</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="favicon.ico">
 
-    <!-- Bootstrap core CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="./css/signin.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  </head>
-  <body class="text-center">
-      <form class="form-signin" autocomplete="off">
-        <div class="flex-nowrap mb-12">
-          <img src="https://online.morhabshi.com/morha-logo.jpg" height="90px" />
-        </div>
-        <br />
-        <h3 class="mb-6 font-weight-normal">Keluarga MORHA.</h3>
-        <p class="mb-6 font-weight-normal text-secondary">Daftar masuk dan nikmati keriangan :)</p>
-        <div class="input-group flex-nowrap mb-3">
-          <input type="email" class="form-control" id="email" placeholder="Email" aria-label="Email" aria-describedby="addon-wrapping">
-        </div>
-        <div class="input-group flex-nowrap mb-3">
-          <input type="password" class="form-control" id="password" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">
-        </div>
-        <div class="input">
-          <button class="btn btn-outline-success mx-1" id="btn-login" type="button">Daftar Masuk</button>
-        </div>
-        <hr class="mb-6">
-        <p><small><a href="#">Lupa Email / Kata Laluan</a></small></p>
-        <p><small><a href="register.html">Daftar Akaun Baru</a></small></p>
-        <div id="div-error"></div>
-        <hr class="mb-6">
-        <p class="mb-6 font-weight-normal text-secondary">Atau daftar masuk dengan akaun social media berikut:</p>
-        <div class="text-center">
-            <a href="#" id="btn-google"><i class="fab fa-google fa-2x mx-2 text-secondary"></i></a>
-            <a href="#" id="btn-facebook"><i class="fab fa-facebook fa-2x mx-2 text-secondary"></i></a>
-            <a href="#"><i class="fab fa-twitter fa-2x mx-2 text-secondary"></i></a>
-        </div>
-        <div class="text-center" id="div-signout">
-            <br />
-            <a href="#" id="btn-signout" onclick="callLogout()">Sign Out</a>
-        </div>
+  <title>Keluarga MORHA</title>
 
-      </form>
+  <!-- Bootstrap core CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="./css/signin.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
 
-    <!-- Bootstrap core JavaScript
+<body class="text-center">
+  <form class="form-signin" autocomplete="off">
+    <div class="flex-nowrap mb-12">
+      <img src="https://online.morhabshi.com/morha-logo.jpg" height="90px" />
+    </div>
+    <br />
+    <h3 class="mb-6 font-weight-normal">Keluarga MORHA.</h3>
+    <p class="mb-6 font-weight-normal text-secondary">Daftar masuk dan nikmati keriangan :)</p>
+    <div class="input-group flex-nowrap mb-3">
+      <input type="email" class="form-control" id="email" placeholder="Email" aria-label="Email"
+        aria-describedby="addon-wrapping">
+    </div>
+    <div class="input-group flex-nowrap mb-3">
+      <input type="password" class="form-control" id="password" placeholder="Password" aria-label="Password"
+        aria-describedby="addon-wrapping">
+    </div>
+    <div class="input">
+      <button class="btn btn-outline-success mx-1" id="btn-login" type="button">Daftar Masuk</button>
+    </div>
+    <hr class="mb-6">
+    <p><small><a href="#">Lupa Email / Kata Laluan</a></small></p>
+    <p><small><a href="register.html">Daftar Akaun Baru</a></small></p>
+    <div id="div-error"></div>
+    <hr class="mb-6">
+    <p class="mb-6 font-weight-normal text-secondary">Atau daftar masuk dengan akaun social media berikut:</p>
+    <div class="text-center">
+      <a href="#" id="btn-google"><i class="fab fa-google fa-2x mx-2 text-secondary"></i></a>
+      <a href="#" id="btn-facebook"><i class="fab fa-facebook fa-2x mx-2 text-secondary"></i></a>
+      <a href="#"><i class="fab fa-twitter fa-2x mx-2 text-secondary"></i></a>
+    </div>
+    <div class="text-center" id="div-signout">
+      <br />
+      <a href="#" id="btn-signout" onclick="callLogout()">Sign Out</a>
+    </div>
+
+  </form>
+
+  <!-- Bootstrap core JavaScript
     ================================================== -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
-    <!-- Firebase Initi
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+    integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+    crossorigin="anonymous"></script>
+  <!-- Firebase Initi
     ================================================== -->
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
-    <script src="./js/init-firebase.js"></script>
-    <script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+  <script src="./js/init-firebase.js"></script>
+  <script>
 
-      let inputEmail = $('#email');
-      let inputPassword = $('#password');
-      let btnLogin = $('#btn-login');
-      let divError = $('#div-error');
-      let btnGoogle = $('#btn-google');
-      let btnFacebook = $('#btn-facebook');
+    let inputEmail = $('#email');
+    let inputPassword = $('#password');
+    let btnLogin = $('#btn-login');
+    let divError = $('#div-error');
+    let btnGoogle = $('#btn-google');
+    let btnFacebook = $('#btn-facebook');
 
-      btnLogin.on('click', function() {
-        console.log("btnLogin clicked!");
-        divError.empty();
-        firebase.auth().signInWithEmailAndPassword(inputEmail.val(), inputPassword.val()).catch(function(error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          console.log(errorCode+' '+errorMessage);
-          divError.html('<div class="alert alert-danger">'+errorCode+' '+errorMessage+'</div>');
-        });
-      })
-
-      btnGoogle.on('click', function() {
-        console.log("btnGoogle clicked!");
-        divError.empty();
-        var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function(result) {
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          var token = result.credential.accessToken;
-          // The signed-in user info.
-          var user = result.user;
-          console.log("User is: "+user);
-          console.log("Token is: "+token);
-          // ...
-        }).catch(function(error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // The email of the user's account used.
-          var email = error.email;
-          // The firebase.auth.AuthCredential type that was used.
-          var credential = error.credential;
-          // ...
-          divError.html('<div class="alert alert-danger">'+errorCode+' '+errorMessage+' '+email+' '+credential+'</div>');
-        });
-      })
-
-      btnFacebook.on('click', function() {
-        console.log("btnFacebook clicked!");
-        divError.empty();
-        var provider = new firebase.auth.FacebookAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function(result) {
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          var token = result.credential.accessToken;
-          // The signed-in user info.
-          var user = result.user;
-          console.log("User is: "+user);
-          console.log("Token is: "+token);
-          // ...
-        }).catch(function(error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // The email of the user's account used.
-          var email = error.email;
-          // The firebase.auth.AuthCredential type that was used.
-          var credential = error.credential;
-          // ...
-          divError.html('<div class="alert alert-danger">'+errorCode+' '+errorMessage+' '+email+' '+credential+'</div>');
-        });
-      })
-
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          console.log("User LOGGED in!");
-          //$('#div-signout').text('Sign out from '+user.provider);
-          $('#div-signout').show();
-          //window.location.replace(pageURL+'/process.html');
-        } else {
-          $('#div-signout').hide();
-          console.log("User NOT signed in!");
-        }
+    btnLogin.on('click', function () {
+      console.log("btnLogin clicked!");
+      divError.empty();
+      firebase.auth().signInWithEmailAndPassword(inputEmail.val(), inputPassword.val()).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode + ' ' + errorMessage);
+        divError.html('<div class="alert alert-danger alert-dismissible fade show">' + errorCode + ' ' + errorMessage +
+          '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+          '<span aria-hidden="true">&times;</span>' +
+          '</button></div>');
       });
+    })
 
-    </script>
-  </body>
+    btnGoogle.on('click', function () {
+      console.log("btnGoogle clicked!");
+      divError.empty();
+      var provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithPopup(provider).then(function (result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        console.log("User is: " + user);
+        console.log("Token is: " + token);
+        // ...
+      }).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+        divError.html('<div class="alert alert-danger">' + errorCode + ' ' + errorMessage + ' ' + email + ' ' + credential + '</div>');
+      });
+    })
+
+    btnFacebook.on('click', function () {
+      console.log("btnFacebook clicked!");
+      divError.empty();
+      var provider = new firebase.auth.FacebookAuthProvider();
+      firebase.auth().signInWithPopup(provider).then(function (result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        console.log("User is: " + user);
+        console.log("Token is: " + token);
+        // ...
+      }).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+        divError.html('<div class="alert alert-danger">' + errorCode + ' ' + errorMessage + ' ' + email + ' ' + credential + '</div>');
+      });
+    })
+
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+
+        if (user.isAnonymous) callLogout();
+
+        console.log("User LOGGED in!");
+        //$('#div-signout').text('Sign out from '+user.provider);
+        window.location.replace(pageURL+pageMain);
+        $('#div-signout').show();
+
+        //window.location.replace(pageURL+'/process.html');
+      } else {
+        $('#div-signout').hide();
+        console.log("User NOT signed in!");
+      }
+    });
+
+  </script>
+</body>

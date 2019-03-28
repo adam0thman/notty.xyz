@@ -1,185 +1,59 @@
-<h2 class="text-info">Dashboard Page</h2>
+
+<h2 class="display-4"><i class="far fa-id-badge"></i> Dashboard Ejen </h2>
+<br />
+<br />
+
 <hr class="mb-12">
 
-<p class="lead">Hello <holder id="txt-name-dashboard"></holder>! Please see below your remaining sessions for <holder id="txt-year-month"></holder>:</p>
-<button class="btn btn-outline-secondary" id="btn-show-sessions" disabled="disabled">Show Sessions I'm Attending</button>
-<button class="btn btn-outline-secondary" id="btn-show-conducting" disabled="disabled">Show Sessions I'm Teaching</button>
+<div class="row text-center">
+  <div class="col-md-3">
+    <a href="main.html?v=buyproduct">
+      <i class="fas fa-shopping-cart fa-5x mb-4 text-success"></i>
+    </a>
+    <p class="mb-12 text-success">Beli Stok Baru</p>
 
-<hr class="mb-4">
-<h5 class="text-info">Sessions that you're attending:</h5>
-<form class="form-inline">
-  <div class="form-group mb-2">
-    <label for="staticfilter" class="sr-only">Search </label>
-    <input id="staticfilter"  type="search" class="form-control-plaintext light-table-filter" data-table="order-table" placeholder="Search keyword here..">
   </div>
-</form>
-<div class="table-responsive">
-  <table class="sortable table table-striped table-hover table-sm order-table">
-    <caption>Upcoming sessions you;re attending.</caption>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Session Name</th>
-        <th>Session Start</th>
-        <th>Session Location</th>
-      </tr>
-    </thead>
-    <tbody id="allSessions">
-    </tbody>
-  </table>
+  <div class="col-md-3">
+    <a href="#">
+      <i class="fas fa-chart-line fa-5x mb-4 text-info"></i>
+    </a>
+    <p class="mb-12 text-info">Rekod Penjualan</p>
+  </div>
+  <div class="col-md-3">
+    <a href="main.html?v=mybonus">
+      <i class="fas fa-comments-dollar fa-5x mb-4 text-danger"></i>
+    </a>
+    <p class="mb-12 text-danger">Rekod Bonus</p>
+  </div>
+  <div class="col-md-3">
+    <a href="#">
+      <i class="fas fa-share-alt fa-5x mb-4 text-info"></i>
+    </a>
+    <p class="mb-12 text-info">Promosikan Link</p>
+  </div>
 </div>
-<hr class="mb-4">
-<h5 class="text-info">Sessions that you're conducting:</h5>
-<hr class="mb-4">
-<form class="form-inline">
-  <div class="form-group mb-2">
-    <label for="staticfilter" class="sr-only">Search </label>
-    <input id="staticfilter"  type="search" class="form-control-plaintext light-table-filter" data-table="order-table" placeholder="Search keyword here..">
+
+<hr class="mb-12">
+
+<div class="row">
+  <div class="col-md-6">
+    <h4 class="lead">Jualan Bulanan</h4>
   </div>
-</form>
-<div class="table-responsive">
-  <table class="sortable table table-striped table-hover table-sm order-table">
-    <caption>Upcoming sessions that you are conducting.</caption>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th></th>
-        <th>Session Name</th>
-        <th>Session Start</th>
-        <th>Session Location</th>
-      </tr>
-    </thead>
-    <tbody id="allConducting">
-    </tbody>
-  </table>
+  <div class="col-md-6">
+    <h4 class="lead">Pergerakan Stock</h4>
+  </div>
 </div>
 
 
 <script>
-  console.log("Hello from "+window.location.pathname+window.location.search);  
+  console.log("Hello from " + window.location.pathname + window.location.search);
 
-  firebase.auth().onAuthStateChanged(function(user) {
+  firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      console.log("user.providerData[0].phoneNumber.substring(1) is "+user.providerData[0].phoneNumber.substring(1));
-      
-      db.collection("users").where("phone","==",user.providerData[0].phoneNumber.substring(1))
-      .get().then(function(userData) {
-        userData.forEach(function(userSingle) {
-          console.log("Current userSingle is: "+userSingle.data().organization);
-          $('#txt-name-top').html(userSingle.data().name);
-          $('#txt-name-dashboard').html(userSingle.data().name);
-          $('#btn-show-sessions').attr("onClick", 'loadUserSessions("'+userSingle.data().phone+'","'+userSingle.data().organization_unique_id+'","'+today.getFullYear()+"-"+(parseInt(today.getMonth())+1)+'")');
-          $('#btn-show-conducting').attr("onClick", 'loadConductSessions("'+userSingle.data().unique_id+'","'+userSingle.data().organization_unique_id+'","'+today.getFullYear()+"-"+(parseInt(today.getMonth())+1)+'")');
-          $('#txt-year-month').html(monthNames[today.getMonth()]+" "+today.getFullYear());
-          //loadExistingUsers(userSingle.data().organization);
-        })
-      }).then(function() {
-        console.log("Err.... Done?");
-        $('#btn-show-sessions').removeAttr('disabled');
-        $('#btn-show-conducting').removeAttr('disabled');
-      }).catch(function(e) {
-        console.log("Error fetching user details: ", e);
-      });
-
+      //ok!
     } else {
       console.log("User NOT signed in.");
     }
   });
-  
-  function loadUserSessions(userPhone, orgId, yearMonth) {
-    console.log("Params are: "+userPhone+" "+orgId+" "+yearMonth);
-    db.collection("sessions/"+orgId+"/"+yearMonth+"/")
-    .where("session_completed","==",false)
-    .where("session_participants","array-contains",userPhone)
-    .get().then(function(allSessions) {
 
-      var tableBody = document.getElementById('allSessions');
-      while (tableBody.firstChild) {
-        tableBody.removeChild(tableBody.firstChild);
-      }
-      var i = 1;
-      console.log("Lentgh: "+allSessions.length);
-      allSessions.forEach(function(eachSession) {
-        console.log(eachSession.data().session_participants);
-        var row = document.createElement('tr');
- 
-        var cellNum = document.createElement('td');
-        cellNum.appendChild(document.createTextNode(i));
-        
-        var cellName = document.createElement('td');
-        cellName.appendChild(document.createTextNode(eachSession.data().session_name));
-        
-        var cellStart = document.createElement('td');
-        cellStart.appendChild(document.createTextNode(timeConverter(eachSession.data().session_start["seconds"])));
-
-        var cellLocation = document.createElement('td');
-        cellLocation.appendChild(document.createTextNode(eachSession.data().session_location));
-
-        row.appendChild(cellNum);
-        row.appendChild(cellName);
-        row.appendChild(cellStart);
-        row.appendChild(cellLocation);
-        tableBody.appendChild(row);
-        i=i+1;                    
-      })
-
-    }).then(function() {
-      $('#btn-show-sessions').hide();
-      console.log("Done fetching all sessions.");
-    }).catch(function(e) {
-      console.log("Error fetching all sessions of "+userPhone+" :", e);
-    });
-  }
-
-  function loadConductSessions(userId, orgId, yearMonth) {
-    console.log("Params for conducting sessions are: "+userId+" "+orgId+" "+yearMonth);
-    db.collection("sessions/"+orgId+"/"+yearMonth+"/")
-    .where("session_completed","==",false)
-    .where("session_owner","==",userId)
-    .get().then(function(allSessions) {
-
-      var tableBody = document.getElementById('allConducting');
-      while (tableBody.firstChild) {
-        tableBody.removeChild(tableBody.firstChild);
-      }
-      var i = 1;
-
-      allSessions.forEach(function(eachSession) {
-
-        var row = document.createElement('tr');
- 
-        var cellNum = document.createElement('td');
-        cellNum.appendChild(document.createTextNode(i));
-        
-        var cellAction = document.createElement('td');
-        cellAction.innerHTML = '<a href="qr.html?o='+orgId+'&amp;d='+eachSession.id+'" target="_blank" class="text-success" data-toggle="tooltip" data-placement="right" title="Click here to initiate class attendance QR code."><i class="fas fa-play"></i></a>';
-
-        var cellName = document.createElement('td');
-        cellName.appendChild(document.createTextNode(eachSession.data().session_name));
-        
-        var cellStart = document.createElement('td');
-        cellStart.appendChild(document.createTextNode(timeConverter(eachSession.data().session_start["seconds"])));
-
-        var cellLocation = document.createElement('td');
-        cellLocation.appendChild(document.createTextNode(eachSession.data().session_location));
-
-        row.appendChild(cellNum);
-        row.appendChild(cellAction);
-        row.appendChild(cellName);
-        row.appendChild(cellStart);
-        row.appendChild(cellLocation);
-        tableBody.appendChild(row);
-        i=i+1;                    
-      })
-
-    }).then(function() {
-      $('#btn-show-conducting').hide();
-      console.log("Done fetching all sessions.");
-      $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-      })
-    }).catch(function(e) {
-      console.log("Error fetching all sessions of "+userId+" :", e);
-    });
-  }
 </script>

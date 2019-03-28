@@ -1,480 +1,593 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
 
-    <title>Keluarga MORHA | Pendaftaran</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="favicon.ico">
 
-    <!-- Bootstrap core CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <!-- Custom styles for this template -->
-    <link href="./css/form-validation.css" rel="stylesheet">
-  </head>
-  <body class="bg-light">
+  <title>Keluarga MORHA | Pendaftaran</title>
 
-    <div class="container">
-      <div class="py-5 text-center">
-        <img class="mb-4" src="https://online.morhabshi.com/morha-logo.jpg" height="90px" />
-        <h2>Borang Pendaftaran Ejen/Stokist Baru</h2>
-        <p class="lead">Borang di bawah haruslah di isi dengan sebetulnya. Sebarang maklumat yang diterima adalah dianggap benar, dan jika maklumat diketahui tidak tepat, status anda sebagai seorang Ejen/Stokist Morha Marketing mungkin dalam bahaya.</p>
-        <p class="lead">Mulakan dengan mengisi nama serta alamat email anda di ruangan di bawah.</p>
-      </div>
+  <!-- Bootstrap core CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <!-- Custom styles for this template -->
+  <link href="./css/form-validation.css" rel="stylesheet">
+</head>
 
-      <form class="needs-validation" novalidate>
-        <div class="form-group row">
-          <label for="inputName" class="col-sm-2 col-form-label">Nama Penuh</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputName" placeholder="Contoh: Muhammad Bin Abdullah" required>
-            <div class="invalid-feedback">
-                Maklumat nama penuh anda diperlukan.
-            </div>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-          <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail" placeholder="Contoh: email@example.com" required>
-            <div class="invalid-feedback">
-                Masukkan alamat email yang sebetulnya.
-            </div>
-          </div>
-        </div>
-        <hr class="mb-4">
-        <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Selanjutnya <i class="fas fa-long-arrow-alt-right"></i></button>
-      </form>
-<!--
-      <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill">3</span>
-          </h4>
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Product name</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$12</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Second product</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$8</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Third item</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between bg-light">
-              <div class="text-success">
-                <h6 class="my-0">Promo code</h6>
-                <small>EXAMPLECODE</small>
-              </div>
-              <span class="text-success">-$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (USD)</span>
-              <strong>$20</strong>
-            </li>
-          </ul>
+<body class="bg-light">
 
-          <form class="card p-2">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Promo code">
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary">Redeem</button>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="col-md-8 order-md-1">
-          <h4 class="mb-3">Billing address</h4>
-          <form class="needs-validation" novalidate>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="firstName">First name</label>
-                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                  Valid first name is required.
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="lastName">Last name</label>
-                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                  Valid last name is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="username">Username</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">@</span>
-                </div>
-                <input type="text" class="form-control" id="username" placeholder="Username" required>
-                <div class="invalid-feedback" style="width: 100%;">
-                  Your username is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="email">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="address">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-              <div class="invalid-feedback">
-                Please enter your shipping address.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-            </div>
-
-            <div class="row">
-              <div class="col-md-5 mb-3">
-                <label for="country">Country</label>
-                <select class="custom-select d-block w-100" id="country" required>
-                  <option value="">Choose...</option>
-                  <option>United States</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please select a valid country.
-                </div>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="state">State</label>
-                <select class="custom-select d-block w-100" id="state" required>
-                  <option value="">Choose...</option>
-                  <option>California</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="zip">Zip</label>
-                <input type="text" class="form-control" id="zip" placeholder="" required>
-                <div class="invalid-feedback">
-                  Zip code required.
-                </div>
-              </div>
-            </div>
-            <hr class="mb-4">
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="same-address">
-              <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="save-info">
-              <label class="custom-control-label" for="save-info">Save this information for next time</label>
-            </div>
-            <hr class="mb-4">
-
-            <h4 class="mb-3">Payment</h4>
-
-            <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Credit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="debit">Debit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="paypal">Paypal</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="cc-name">Name on card</label>
-                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                <small class="text-muted">Full name as displayed on card</small>
-                <div class="invalid-feedback">
-                  Name on card is required
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="cc-number">Credit card number</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                <div class="invalid-feedback">
-                  Credit card number is required
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">Expiration</label>
-                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                <div class="invalid-feedback">
-                  Expiration date required
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                <div class="invalid-feedback">
-                  Security code required
-                </div>
-              </div>
-            </div>
-            <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
-          </form>
-        </div>
-      </div>
--->
-      <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2012-2018 Morha Marketing</p>
-        <ul class="list-inline">
-          <li class="list-inline-item"><a href="#">Privacy</a></li>
-          <li class="list-inline-item"><a href="#">Terms</a></li>
-          <li class="list-inline-item"><a href="#">Support</a></li>
-        </ul>
-      </footer>
+  <div class="container">
+    <div class="py-5 text-center">
+      <img class="mb-4" src="https://online.morhabshi.com/morha-logo.jpg" height="90px" />
+      <h2>Borang Pendaftaran Ejen/Stokist Baru</h2>
+      <p class="lead">Borang di bawah haruslah di isi dengan sebetulnya. Sebarang maklumat yang diterima adalah dianggap
+        benar, dan jika maklumat diketahui tidak tepat, status anda sebagai seorang Ejen/Stokist Morha Marketing mungkin
+        dalam bahaya.</p>
+      <p class="lead">Mulakan dengan mengisi nama serta alamat email anda di ruangan di bawah.</p>
     </div>
 
-    <!-- 
+    <form class="needs-validation" novalidate>
+      <div class="form-group row">
+        <label for="inputName" class="col-sm-2 col-form-label">Nama Penuh</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputName" placeholder="Contoh: Muhammad Bin Abdullah" required>
+          <div class="invalid-feedback">
+            Maklumat nama penuh anda diperlukan.
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="inputEmail" placeholder="Contoh: email@example.com" required>
+          <div class="invalid-feedback">
+            Masukkan alamat email yang sebetulnya.
+          </div>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <button class="btn btn-outline-primary btn-lg btn-block" type="submit" id="btnFirst" disabled>Selanjutnya <i
+          class="fas fa-long-arrow-alt-right"></i></button>
+    </form>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2012-2018 Morha Marketing</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+      </ul>
+    </footer>
+  </div>
+
+  <!-- 
       Modal #Step2
     -->
-    <div class="modal fade" id="modalStep2" tabindex="-1" role="dialog" aria-labelledby="modalStep2Label" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalStep2Label">Pastikan anda baca dan fahami penafian dan pengakuan di bawah:</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-              <div id="div1" style="height: 300px;">
-                  <div id="div2" class="" style="height: inherit; overflow-y: auto; border:1px solid black;">
-                    <div class="mx-3 my-2">
-                        <h4>Penafian Utama</h4>
-                        <br />
-                        <p class="text-muted">Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                            Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                            Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                            Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                        </p>
-                        <h6>A. Perangccanngan Simpanan Maklumat</h6>
-                        <p class="text-muted">Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                              Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                              Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                              Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                        </p>
-                        <h6>B. Hak Pemilikan Harat Intelek</h6>
-                          <p class="text-muted">Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                                Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                                Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                                Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                          </p>
-                        <h6>C. Perkongsian Maklumat Perniagana Dan Hakmilik Social</h6>
-                        <p class="text-muted">Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                                  Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                                  Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                                  Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala makluamt bla bla bal bla bla.
-                        </p>
-                    </div>
-                  </div>
-              </div>
-            <form class="my-4">
-              <p> Tandakan petak pilihan di bawah untuk teruskan proses pendaftaran:</p>
-              <div class="form-check my-2">
-                <input type="checkbox" class="form-check-input" id="inputDisclaimer">
-                <label class="form-check-label" for="inputDisclaimer">Saya telah membaca dan memahami maklumat penafian ini.</label>
-              </div>
-              <div class="form-check my-2">
-                  <input type="checkbox" class="form-check-input" id="inputAccurate">
-                  <label class="form-check-label" for="inputAccurate">Saya mengaku bahwasanya maklumat-maklumat yang saya sertakan adalah benar, dan pihak Morha Marketing boleh menggunakannya selagi tidak menyalahi perundangan Malaysia. </label>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-outline-primary" id="btnToStep3">Selanjutnya <i class="fas fa-long-arrow-alt-right"></i></button>
-          </div>
+  <div class="modal fade" id="emailExists" tabindex="-1" role="dialog" aria-labelledby="emailExistsLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-center">Nampaknya email yang anda usulkan telah digunapakai!</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Anda boleh cuba lagi dengan menggunakan email lain, atau terus ke laman Daftar
+            Masuk.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="callLogout()">Daftar Masuk</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"
+            onclick="javascript:window.reload();">Guna Email Lain</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- 
+  <!-- 
+      Modal #Step2
+    -->
+  <div class="modal fade" id="modalStep2" tabindex="-1" role="dialog" aria-labelledby="modalStep2Label"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalStep2Label">Pastikan anda baca dan fahami penafian dan pengakuan di bawah:
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="div1" style="height: 300px;">
+            <div id="div2" class="" style="height: inherit; overflow-y: auto; border:1px solid black;">
+              <div class="mx-3 my-2">
+                <h4>Penafian Utama</h4>
+                <br />
+                <p class="text-muted">Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini
+                  sleanjutnya. Dan segala makluamt bla bla bal bla bla.
+                  Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala
+                  makluamt bla bla bal bla bla.
+                  Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala
+                  makluamt bla bla bal bla bla.
+                  Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala
+                  makluamt bla bla bal bla bla.
+                </p>
+                <h6>A. Perangccanngan Simpanan Maklumat</h6>
+                <p class="text-muted">Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini
+                  sleanjutnya. Dan segala makluamt bla bla bal bla bla.
+                  Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala
+                  makluamt bla bla bal bla bla.
+                  Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala
+                  makluamt bla bla bal bla bla.
+                  Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala
+                  makluamt bla bla bal bla bla.
+                </p>
+                <h6>B. Hak Pemilikan Harat Intelek</h6>
+                <p class="text-muted">Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini
+                  sleanjutnya. Dan segala makluamt bla bla bal bla bla.
+                  Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala
+                  makluamt bla bla bal bla bla.
+                  Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala
+                  makluamt bla bla bal bla bla.
+                  Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala
+                  makluamt bla bla bal bla bla.
+                </p>
+                <h6>C. Perkongsian Maklumat Perniagana Dan Hakmilik Social</h6>
+                <p class="text-muted">Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini
+                  sleanjutnya. Dan segala makluamt bla bla bal bla bla.
+                  Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala
+                  makluamt bla bla bal bla bla.
+                  Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala
+                  makluamt bla bla bal bla bla.
+                  Perangkaan penafian utama merangkumi segala senarai penafian di bawah ini sleanjutnya. Dan segala
+                  makluamt bla bla bal bla bla.
+                </p>
+              </div>
+            </div>
+          </div>
+          <form class="my-4">
+            <p> Tandakan petak pilihan di bawah untuk teruskan proses pendaftaran:</p>
+            <div class="form-check my-2">
+              <input type="checkbox" class="form-check-input" id="inputDisclaimer">
+              <label class="form-check-label" for="inputDisclaimer">Saya telah membaca dan memahami maklumat penafian
+                ini.</label>
+            </div>
+            <div class="form-check my-2">
+              <input type="checkbox" class="form-check-input" id="inputAccurate">
+              <label class="form-check-label" for="inputAccurate">Saya mengaku bahwasanya maklumat-maklumat yang saya
+                sertakan adalah benar, dan pihak Morha Marketing boleh menggunakannya selagi tidak menyalahi perundangan
+                Malaysia. </label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-primary" id="btnToStep3">Selanjutnya <i
+              class="fas fa-long-arrow-alt-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 
       Modal #Step3
     -->
-    <div class="modal fade" id="modalStep3" tabindex="-1" role="dialog" aria-labelledby="modalStep3Label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalStep3Label">Sila nyatakan Kod Ahli referrer anda:</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+  <div class="modal fade" id="modalStep3" tabindex="-1" role="dialog" aria-labelledby="modalStep3Label"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalStep3Label">Sila nyatakan Kod Ahli referrer anda:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="my-4">
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label for="inputReferrer">No Kod Ahli Referrer Anda:</label>
+                <input type="text" class="form-control" id="inputReferrer" placeholder="" required>
+                <div class="invalid-feedback">
+                  Masukkan maklumat referrer anda.
+                </div>
+              </div>
             </div>
-            <div class="modal-body">
-              <form class="my-4">
-                <div class="row">
-                  <div class="col-md-12 mb-3">
-                    <label for="inputReferrer">No Kod Ahli Referrer Anda:</label>
-                    <input type="text" class="form-control" id="inputReferrer" placeholder="" required>
+            <div class="form-check my-2">
+              <input type="checkbox" class="form-check-input" id="inputNoReferrer">
+              <label class="form-check-label" for="inputNoReferrer">Saya tidak ada referrer. </label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-primary" id="btnToStep4">Selanjutnya <i
+              class="fas fa-long-arrow-alt-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 
+      Modal #Step4
+    -->
+  <div class="modal fade" style="overflow-y:auto;" id="modalStep4" tabindex="-1" role="dialog"
+    aria-labelledby="modalStep4Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modalStep4Label">Isikan butiran selanjutnya:</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="my-4">
+            <form class="needs-validation" novalidate>
+
+              <div class="mb-3">
+                <label class="" for="inputNameDisplay">Nama Penuh</label>
+                <input type="text" class="form-control" id="inputNameDisplay" readonly>
+              </div>
+              <div class="mb-3">
+                <label class="" for="inputEmailDisplay">Email</label>
+                <input type="text" class="form-control" id="inputEmailDisplay" readonly>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="inputPassword1">Kata Laluan</label>
+                    <input type="password" class="form-control" id="inputPassword1" required>
                     <div class="invalid-feedback">
-                      Masukkan maklumat referrer anda.
+                      Masukkan kata laluan.
                     </div>
                   </div>
                 </div>
-                <div class="form-check my-2">
-                    <input type="checkbox" class="form-check-input" id="inputNoReferrer">
-                    <label class="form-check-label" for="inputNoReferrer">Saya tidak ada referrer. </label>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="inputPassword2">Sahkan Kata Laluan</label>
+                    <input type="password" class="form-control" id="inputPassword2" required>
+                    <div class="invalid-feedback">
+                      Sahkan kata laluan.
+                    </div>
+                  </div>
                 </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-outline-primary" id="btnToStep4">Selanjutnya <i class="fas fa-long-arrow-alt-right"></i></button>
-            </div>
-          </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="inputPhone">No Telefon</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">+</span>
+                  </div>
+                  <input type="number" class="form-control" id="inputPhone" placeholder="60123456789" required>
+                  <div class="invalid-feedback" style="width: 100%;">
+                    Sila sertakan nombor telefon anda.
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="inputAddress">Alamat</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="11, Jalan Gunung Nuang U11/30"
+                  required>
+                <div class="invalid-feedback">
+                  Sila masukkan alamat anda.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="sr-only" for="inputAddress2">Address 2 <span class="text-muted">(Optional)</span></label>
+                <input type="text" class="form-control" id="inputAddress2" placeholder="Taman Bunga Raya, Kuala Nibang">
+              </div>
+
+              <div class="row">
+                <div class="col-md-5 mb-3">
+                  <label for="inputCountry">Malaysia</label>
+                  <select class="custom-select d-block w-100" id="inputCountry" required>
+                    <option value="my" selected>Malaysia</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="inputState">Negeri</label>
+                  <select class="custom-select d-block w-100" id="inputState" required>
+                    <option value="">Pilih...</option>
+                    <option value="selangor">Selangor</option>
+                    <option value="kualalumpur">W. P. Kuala Lumpur</option>
+                    <option value="labuan">W. P. Labuan</option>
+                    <option value="putrajaya">W. P. Putrajaya</option>
+                    <option value="sabah">Sabah</option>
+                    <option value="sarawak">Sarawak</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Sila pilih negeri yang tepat.
+                  </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="inputPostcode">Poskod</label>
+                  <input type="text" class="form-control" id="inputPostcode" placeholder="" required>
+                  <div class="invalid-feedback">
+                    Poskod diperlukan.
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div id="fieldStillEmpty" class="invisible"><small class="text-danger font-weight-bold"><i>Pastikan anda
+                  memberi kesemua maklumat yang diperlukan.</i></small></div>
+            <div id="passwordMismatch" class="invisible"><small class="text-danger font-weight-bold"><i>Kata laluan
+                  tidak sama.</i></small></div>
         </div>
+        <!--./ end of modal body -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-primary" id="btnToFinish">Sahkan Pendaftaran</button>
+        </div>
+      </div>
     </div>
-      
+  </div>
 
-    <!-- Bootstrap core JavaScript
+
+  <!-- Bootstrap core JavaScript
     ================================================== -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
-    <!-- Firebase Initi
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+    integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+    crossorigin="anonymous"></script>
+  <!-- Firebase Initi
     ================================================== -->
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
-    <script src="./js/init-firebase.js"></script>
-    <script type="text/javascript">
-      console.log("Hello from Registration page.");
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+  <script src="./js/init-firebase.js"></script>
+  <script type="text/javascript">
+    console.log("Hello from Registration page.");
 
-      // Example starter JavaScript for disabling form submissions if there are invalid fields
-      (function() {
-        'use strict';
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict';
 
-        window.addEventListener('load', function() {
-          // Fetch all the forms we want to apply custom Bootstrap validation styles to
-          var forms = document.getElementsByClassName('needs-validation');
+      window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
 
-          // Loop over them and prevent submission
-          var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-              if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-                console.log("form.checkValidity() FALSE");
-              } else {
-                event.preventDefault();
-                event.stopPropagation();
-                console.log("form.checkValidity() TRUE")
-                // proceed to Step 2
-                proceedToStep2();
-              }
-              form.classList.add('was-validated');
-            }, false);
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+              console.log("form.checkValidity() FALSE");
+            } else {
+              event.preventDefault();
+              event.stopPropagation();
+              console.log("form.checkValidity() TRUE")
+              // proceed to Step 2
+              $('#inputName').prop("readonly", true);
+              $('#inputEmail').prop("readonly", true);
+              let theEmail = $('#inputEmail').val();
+              db.collection("agents/").doc(theEmail)
+                .get().then(function (userDoc) {
+                  if (userDoc.exists) {
+                    $('#emailExists').modal({
+                      backdrop: 'static',
+                      keyboard: false
+                    });
+                  } else {
+                    $('#modalStep2').modal({
+                      backdrop: 'static',
+                      keyboard: false
+                    });
+                  }
+                }).catch(function (e) {
+                  console.log("Error checking whetehr user exists or not: ", e);
+                });
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+
+    firebase.auth().signInAnonymously().catch(function (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log("Error signing in anonymously. Error code: " + errorCode + " with message: " + errorMessage);
+    });
+
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        // User is signed in.
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        $('#btnFirst').removeAttr('disabled');
+
+        if (isAnonymous) console.log("User is anonymouse and uid: " + uid);
+
+        $('[data-dismiss="modal"]').on('click', function (event) {
+          console.log("I have been dismissed!");
+          location.reload();
+        })
+
+        $('#modalStep2').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // Button that triggered the modal
+          //var recipient = button.data('whatever') // Extract info from data-* attributes
+          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this)
+          //modal.find('.modal-title').text('New message to ' + recipient)
+          //modal.find('.modal-body input').val(recipient)
+          $('#btnToStep3').prop('disabled', true);
+          console.log("Modal step 2 launched!");
+        })
+
+        let inputDisclaimer = $('#inputDisclaimer');
+        let inputAccurate = $('#inputAccurate');
+
+        inputDisclaimer.on('change', function () {
+          if (inputDisclaimer.is(':checked') && inputAccurate.is(':checked')) {
+            console.log("Ah-ha! both already checked!");
+            $('#btnToStep3').removeAttr('disabled');
+          } else {
+            console.log("Hmn.. Disclaimer is checked, but Accurate is NOT..");
+            $('#btnToStep3').prop('disabled', true);
+          }
+        })
+
+        inputAccurate.on('change', function () {
+          if (inputDisclaimer.is(':checked') && inputAccurate.is(':checked')) {
+            console.log("Ah-ha! both already checked!");
+            $('#btnToStep3').removeAttr('disabled');
+          } else {
+            console.log("Hmn.. Accurate is checked, but Disclaimer is NOT..");
+            $('#btnToStep3').prop('disabled', true);
+          }
+        })
+
+        $('#btnToStep3').on('click', function () {
+          $('#modalStep2').modal('hide');
+          $('#modalStep3').modal({
+            backdrop: 'static',
+            keyboard: false
           });
-        }, false);
-      })();
+        })
 
-      $('[data-dismiss="modal"]').on('click', function (event) {
-        console.log("I have been dismissed!");
-        location.reload();
-      })
+        $('#modalStep3').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // Button that triggered the modal
+          var modal = $(this)
+          console.log("Modal step 3 launched!");
+        })
 
-      function proceedToStep2() {
-        $('inputName').prop("readonly", true);
-        $('inputEmail').prop("readonly", true);
-        $('#modalStep2').modal({
-          backdrop: 'static',
-          keyboard: false
-        });
-      }
+        $('#inputNoReferrer').on('change', function () {
+          if ($(this).is(':checked')) {
+            console.log("No referrer is checked.");
+            $('#inputReferrer').val('MORHA');
+            $('#inputReferrer').prop('disabled', true);
+          } else {
+            console.log("No referrer is NOT checked.");
+            $('#inputReferrer').removeAttr('disabled');
+            $('#inputReferrer').val('');
+          }
+        })
 
-      $('#modalStep2').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        //var recipient = button.data('whatever') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this)
-        //modal.find('.modal-title').text('New message to ' + recipient)
-        //modal.find('.modal-body input').val(recipient)
-        $('#btnToStep3').prop('disabled', true);
-        console.log("Modal step 2 launched!");
-      })
+        $('#btnToStep4').on('click', function () {
+          console.log('Button to Step 4 clicked.');
+          $('#modalStep3').modal('hide');
+          $('#modalStep4').modal({
+            backdrop: 'static',
+            keyboard: false
+          });
+          let inputName = $('#inputName').val();
+          let inputEmail = $('#inputEmail').val();
+          $('#inputNameDisplay').val(inputName);
+          $('#inputEmailDisplay').val(inputEmail);
+        })
 
-      let inputDisclaimer = $('#inputDisclaimer');
-      let inputAccurate = $('#inputAccurate');
+        $('#inputPassword1').on('change', function () {
+          let inputPassword1 = $('#inputPassword1').val();
+          let inputPassword2 = $('#inputPassword2').val();
+          if (inputPassword1 !== inputPassword2) {
+            $('#btnToFinish').prop('disabled', true);
+            $('#passwordMismatch').removeClass('invisible');
+          } else {
+            $('#btnToFinish').prop('disabled', false);
+            $('#passwordMismatch').addClass('invisible');
+          }
+        })
 
-      inputDisclaimer.on('change', function() {
-        if ( inputDisclaimer.is(':checked') && inputAccurate.is(':checked')) {
-          console.log("Ah-ha! both already checked!");
-          $('#btnToStep3').removeAttr('disabled');
-        } else {
-          console.log("Hmn.. Disclaimer is checked, but Accurate is NOT..");
-          $('#btnToStep3').prop('disabled', true);
-        }
-      })
+        $('#inputPassword2').on('change', function () {
+          let inputPassword1 = $('#inputPassword1').val();
+          let inputPassword2 = $('#inputPassword2').val();
+          if (inputPassword1 !== inputPassword2) {
+            $('#btnToFinish').prop('disabled', true);
+            $('#passwordMismatch').removeClass('invisible');
+          } else {
+            $('#btnToFinish').prop('disabled', false);
+            $('#passwordMismatch').addClass('invisible');
+          }
+        })
 
-      inputAccurate.on('change', function() {
-        if ( inputDisclaimer.is(':checked') && inputAccurate.is(':checked')) {
-          console.log("Ah-ha! both already checked!");
-          $('#btnToStep3').removeAttr('disabled');
-        } else {
-          console.log("Hmn.. Accurate is checked, but Disclaimer is NOT..");
-          $('#btnToStep3').prop('disabled', true);
-        }
-      })
+        $('#btnToFinish').on('click', function () {
+          console.log('Button FInish clicked.');
 
-      $('#btnToStep3').on('click', function() {
-        $('#modalStep2').modal('hide');
-        $('#modalStep3').modal({
-          backdrop: 'static',
-          keyboard: false
-        });
-      })
+          let inputName = $('#inputName').val();
+          let inputEmail = $('#inputEmail').val();
+          let inputPhone = $('#inputPhone').val();
+          let inputPassword1 = $('#inputPassword1').val();
+          let inputPassword2 = $('#inputPassword2').val();
+          let inputDisclaimer = $('#inputDisclaimer').is(':checked');
+          let inputAccurate = $('#inputAccurate').is(':checked');
+          let inputReferrer = $('#inputReferrer').val();
+          let inputAddress = $('#inputAddress').val();
+          let inputAddress2 = $('#inputAddress2').val();
+          let inputPostcode = $('#inputPostcode').val();
+          let inputState = $('#inputState').val();
+          let inputCountry = $('#inputCountry').val();
 
-      $('#modalStep3').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var modal = $(this)
-        console.log("Modal step 3 launched!");
-      })
+          console.log("inputReferrer is: " + inputReferrer);
+          if (!inputReferrer) inputReferrer = 'MORHA';
 
-      $('#inputNoReferrer').on('change', function() {
-        if ( $(this).is(':checked')) {
-          console.log("No referrer is checked.");
-          $('#inputReferrer').val('MORHA');
-          $('#inputReferrer').prop('disabled', true);
-        } else {
-          console.log("No referrer is NOT checked.");
-          $('#inputReferrer').removeAttr('disabled');
-          $('#inputReferrer').val('');
-        }
-      })
+          if (inputPhone && inputAddress && inputPassword1 && inputPassword2 && inputPostcode && inputState && inputCountry) {
+            $('#fieldStillEmpty').addClass('invisible');
+            db.collection("agents/").doc(inputEmail)
+              .set({
+                fullname: inputName,
+                phone: inputPhone,
+                email: inputEmail,
+                disclaimer: {
+                  status: inputDisclaimer,
+                  time: firebase.firestore.FieldValue.serverTimestamp()
+                },
+                accurate: {
+                  status: inputAccurate,
+                  time: firebase.firestore.FieldValue.serverTimestamp()
+                },
+                parent: inputReferrer,
+                address: inputAddress,
+                address2: inputAddress2,
+                postcode: inputPostcode,
+                state: inputState,
+                country: inputCountry,
+                lastchange: firebase.firestore.FieldValue.serverTimestamp(),
+                isAnonymous: isAnonymous,
+                uid: uid
 
-    </script>
-  </body>
+              }).then(function () {
+                console.log("Done saved registration of " + inputName + ".");
+                var credential = firebase.auth.EmailAuthProvider.credential(inputEmail, inputPassword1);
+                firebase.auth().currentUser.linkAndRetrieveDataWithCredential(credential).then(function (usercred) {
+                  var user = usercred.user;
+                  console.log("Anonymous account successfully upgraded", user);
+                  window.location.replace(pageURL+pageMain);
+                }, function (error) {
+                  console.log("Error upgrading anonymous account", error);
+                  window.location.replace(pageURL+pageMain+'?error=1');
+                });
+              }).catch(function (e) {
+                console.log("Error saving registration data of " + inputName + ":", e)
+              });
+          } else {
+            $('#fieldStillEmpty').removeClass('invisible');
+          } // end else oIF any fireld is empty
+
+        }) // end btnToFinish onclick
+
+      } // user is signed in.
+    });
+
+  </script>
+</body>
