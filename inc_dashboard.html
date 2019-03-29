@@ -1,17 +1,13 @@
-<h2 class="display-4"><i class="far fa-id-badge"></i> Papan Pemuka Utama</h2>
-<br />
-<p class="lead" id="divGreeting">Selamat kembali!</p>
-<br />
-
-<hr class="mb-12">
+<h2 class="display-4"><i class="far fa-id-badge"></i><text id="divGreeting" class="text-capitalize"> Selamat
+    Kembali!</text> (<text id="divLevel2" class="text-capitalize"></text>)</h2>
+<hr class="mb-6">
 
 <div class="accordion" id="accordionExample">
   <div class="card">
     <div class="card-header" id="headingOne">
       <h4 class="mb-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
-        aria-controls="collapseOne"><i
-        class="far fa-arrow-alt-circle-down text-secondary"></i> Papan Pemuka <text class="text-capitalize"
-          id="divLevel">Ejen</text></h4>
+        aria-controls="collapseOne"><i class="far fa-arrow-alt-circle-down text-secondary"></i> Papan Pemuka <text
+          class="text-capitalize" id="divLevel">Ejen/Stokis</text></h4>
     </div>
 
     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -19,26 +15,26 @@
         <div class="row text-center">
           <div class="col-md-3">
             <a href="main.html?v=buyproduct">
-              <i class="fas fa-shopping-cart fa-5x mb-4 text-success"></i>
+              <i class="fas fa-shopping-cart fa-3x mb-4 text-success"></i>
             </a>
             <p class="mb-12 text-success">Beli Stok Baru</p>
 
           </div>
           <div class="col-md-3">
             <a href="#">
-              <i class="fas fa-chart-line fa-5x mb-4 text-info"></i>
+              <i class="fas fa-chart-line fa-3x mb-4 text-info"></i>
             </a>
             <p class="mb-12 text-info">Rekod Penjualan</p>
           </div>
           <div class="col-md-3">
             <a href="main.html?v=mybonus">
-              <i class="fas fa-comments-dollar fa-5x mb-4 text-danger"></i>
+              <i class="fas fa-comments-dollar fa-3x mb-4 text-danger"></i>
             </a>
             <p class="mb-12 text-danger">Rekod Bonus</p>
           </div>
           <div class="col-md-3">
             <a href="#">
-              <i class="fas fa-share-alt fa-5x mb-4 text-info"></i>
+              <i class="fas fa-share-alt fa-3x mb-4 text-info"></i>
             </a>
             <p class="mb-12 text-info">Promosikan Link</p>
           </div>
@@ -49,31 +45,33 @@
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h4 class="mb-0" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-        aria-controls="collapseTwo"><i
-        class="far fa-arrow-alt-circle-down text-secondary"></i> Papan Pemuka Pekerja</h4>
+        aria-controls="collapseTwo"><i class="far fa-arrow-alt-circle-down text-secondary"></i> Papan Pemuka Pekerja
+      </h4>
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body">
-          <div class="row">
-              <div class="col-md-6">
-                <h4 class="lead">Jualan Bulanan</h4>
-                <div id="table_div"></div>
-                <button class="btn btn-sm btn-outline-secondary" id="btnJualan" onclick="jualanBulanan()">Tunjuk Jadual</button>
-              </div>
-              <div class="col-md-6">
-                <h4 class="lead">Pergerakan Stock</h4>
-                <div id="chart_div"></div>
-                <button class="btn btn-sm btn-outline-secondary" id="btnStok" onclick="pergerakanStok()">Tunjuk Chart</button>
-              </div>
-            </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h4 class="lead">Jualan Bulanan</h4>
+            <div id="table_div"></div>
+            <button class="btn btn-sm btn-outline-secondary" id="btnJualan" onclick="jualanBulanan()">Tunjuk
+              Jadual</button>
+          </div>
+          <div class="col-md-6">
+            <h4 class="lead">Pergerakan Stock</h4>
+            <div id="chart_div"></div>
+            <button class="btn btn-sm btn-outline-secondary" id="btnStok" onclick="pergerakanStok()">Tunjuk
+              Chart</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="card">
     <div class="card-header" id="headingThree">
       <h4 class="mb-0" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
-        aria-controls="collapseThree"><i
-        class="far fa-arrow-alt-circle-down text-secondary"></i> Papan Pemuka Pentadbir</h4>
+        aria-controls="collapseThree"><i class="far fa-arrow-alt-circle-down text-secondary"></i> Papan Pemuka Pentadbir
+      </h4>
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body">
@@ -96,8 +94,25 @@
     if (user) {
       db.collection("agents").doc(user.email)
         .get().then(function (userDoc) {
-          $('#divGreeting').text('Selamat kembali ' + userDoc.data().fullname + '!');
-          $('#divLevel').html(userDoc.data().level);
+          $('#divGreeting').html(' ' + userDoc.data().fullname);
+
+          if (userDoc.data().isAdmin) {
+            $('#collapseThree').collapse('show');
+          $('#divLevel2').html('Pentadbir System');
+          } else if (userDoc.data().isStaff) {
+            $('#collapseTwo').collapse('show');
+            $('#divLevel').html(userDoc.data().level);
+            $('#divLevel2').html('Pekerja');
+            pergerakanStok();
+            jualanBulanan();
+          } else if (userDoc.data().level == 'stokis' || userDoc.data().level == 'ejen') {
+            $('#collapseOne').collapse('show');
+            $('#divLevel').html(userDoc.data().level);
+            $('#divLevel2').html(userDoc.data().level);
+          } else {
+            console.log("Uhm.. not ejen/stokis, not staff and not admin? o.0?");
+          }
+
         }).then(function () {
           //jualanBulanan();
           //pergerakanStok();
@@ -173,7 +188,40 @@
     $('#btnJualan').remove();
   }
 
-  $("[aria-controls='collapseThree']").on('click', function() {
+
+  $("#collapseOne").on('shown.bs.collapse', function () {
+    console.log("colapse one clicked!");
+    $('[aria-controls="collapseOne"]>i').removeClass('fa-arrow-alt-circle-down text-secondary');
+    $('[aria-controls="collapseOne"]>i').addClass('fa-arrow-alt-circle-up text-dark');
+  });
+
+  $("#collapseOne").on('hidden.bs.collapse', function () {
+    console.log("colapse one clicked!");
+    $('[aria-controls="collapseOne"]>i').addClass('fa-arrow-alt-circle-down text-secondary');
+    $('[aria-controls="collapseOne"]>i').removeClass('fa-arrow-alt-circle-up text-dark');
+  });
+
+  $("#collapseTwo").on('shown.bs.collapse', function () {
+    console.log("colapse two clicked!");
+    $('[aria-controls="collapseTwo"]>i').removeClass('fa-arrow-alt-circle-down text-secondary');
+    $('[aria-controls="collapseTwo"]>i').addClass('fa-arrow-alt-circle-up text-dark');
+  });
+
+  $("#collapseTwo").on('hidden.bs.collapse', function () {
+    console.log("colapse two clicked!");
+    $('[aria-controls="collapseTwo"]>i').addClass('fa-arrow-alt-circle-down text-secondary');
+    $('[aria-controls="collapseTwo"]>i').removeClass('fa-arrow-alt-circle-up text-dark');
+  });
+
+  $("#collapseThree").on('shown.bs.collapse', function () {
     console.log("colapse three clicked!");
+    $('[aria-controls="collapseThree"]>i').removeClass('fa-arrow-alt-circle-down text-secondary');
+    $('[aria-controls="collapseThree"]>i').addClass('fa-arrow-alt-circle-up text-dark');
+  });
+
+  $("#collapseThree").on('hidden.bs.collapse', function () {
+    console.log("colapse three clicked!");
+    $('[aria-controls="collapseThree"]>i').addClass('fa-arrow-alt-circle-down text-secondary');
+    $('[aria-controls="collapseThree"]>i').removeClass('fa-arrow-alt-circle-up text-dark');
   });
 </script>
