@@ -1,20 +1,147 @@
-
-<h4 class="text-success"><a class="text-muted" href="main.html">Dashboard</a>   <i class="fas fa-chevron-right text-secondary"></i>  <i class="fas fa-shopping-cart"></i> Pembelian Stok </h4>
+<h4 class="text-success"><a class="text-muted" href="main.html">Dashboard</a> <i
+    class="fas fa-chevron-right text-secondary"></i> <i class="fas fa-shopping-cart"></i> Pembelian Stok </h4>
 <br />
 <br />
 
-<hr class="mb-12">
+<p class="lead"">Untuk mula menambah stok anda, pilih produk yang anda kehendaki, pilih kuantiti  dan ketik butang "
+  Masukkan Ke Dalam Bakul".</p> <hr class="mb-4">
 
+  <div class="row">
+    <!-- ############ 
+            MINYAK
+         ############ -->
+    <div class="col-sm-4">
+      <div class="card">
+        <img class="card-img-top" src="img/minyak.jpeg" alt="Minyak Morhabshi" height="320px">
+        <div class="card-body">
+          <h5 class="card-title">Minyak Morhabshi</h5>
+          <p class="card-text">Pilih jenis kapasiti dan tetapkan bilangan karton yang diperlukan.</p>
+          <form class="">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group mb-2">
+                  <label for="variant-minyak" class="sr-only">Kapasiti Minyak (ml)</label>
+                  <select id="variant-minyak" class="form-control">
+                    <option value="120">120ml (6 botol per karton)</option>
+                    <option value="60">60ml (6 botol per karton)</option>
+                    <option value="40">40ml (6 botol per karton)</option>
+                    <option value="15">15ml (6 botol per karton)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
+          <form class="">
+            <div class="row">
+              <div class="col-sm-8">
+                <div class="form-group mb-2">
+                  <label for="quantity-minyak" class="sr-only">Kuantiti Minyak (Karton)</label>
+                  <input type="text" class="form-control" id="quantity-minyak" value="1 karton minyak" readonly>
+                  <input type="hidden" class="form-control" id="quantity-minyak-actual" value="1" readonly>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="form-group mb-2">
+                  <button class="btn btn-outline-dark" onClick="event.preventDefault(); quantityDecrease('minyak');"><i
+                      class="fas fa-minus"></i></button>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="form-group mb-2">
+                  <button class="btn btn-outline-dark" onClick="event.preventDefault(); quantityIncrease('minyak');"><i
+                      class="fas fa-plus"></i></button>
+                </div>
+              </div>
+            </div>
+          </form>
+          <a href="#" class="btn btn-outline-primary" onClick="addToCart('minyak')">Pesan Minyak Morhabshi</a>
+        </div>
+      </div> <!-- ./card -->
+    </div> <!-- ./col-sm-4 -->
+    <!-- ############ 
+            STEVIA
+         ############ -->
+    <div class="col-sm-4">
+      <div class="card">
+        <img class="card-img-top" src="img/stevia.jpeg" alt="Minyak Morhabshi" height="320px">
+        <div class="card-body">
+          <h5 class="card-title">Premium Stevia Morhabshi</h5>
+          <p class="card-text">Pilih jenis kapasiti dan tetapkan bilangan karton yang diperlukan.</p>
+          <form class="">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group mb-2">
+                  <label for="variant-stevia" class="sr-only">Kapasiti Stevia (ml)</label>
+                  <select id="variant-stevia" class="form-control">
+                    <option value="120">120ml (6 botol per karton)</option>
+                    <option value="60">60ml (6 botol per karton)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
+          <form class="">
+            <div class="row">
+              <div class="col-sm-8">
+                <div class="form-group mb-2">
+                  <label for="quantity-stevia" class="sr-only">Kuantiti Stevia (Karton)</label>
+                  <input type="text" class="form-control" id="quantity-stevia" value="1 karton Stevia" readonly>
+                  <input type="hidden" class="form-control" id="quantity-stevia-actual" value="1" readonly>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="form-group mb-2">
+                  <button class="btn btn-outline-dark" onClick="event.preventDefault(); quantityDecrease('stevia');"><i
+                      class="fas fa-minus"></i></button>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="form-group mb-2">
+                  <button class="btn btn-outline-dark" onClick="event.preventDefault(); quantityIncrease('stevia');"><i
+                      class="fas fa-plus"></i></button>
+                </div>
+              </div>
+            </div>
+          </form>
+          <a href="#" class="btn btn-outline-primary" onClick="addToCart('stevia')">Order Stevia</a>
+        </div>
+      </div> <!-- ./card -->
+    </div> <!-- ./col-sm-4 -->
+  </div>
 
-<script>
-  console.log("Hello from " + window.location.pathname + window.location.search);
+  <script>
+    console.log("Hello from " + window.location.pathname + window.location.search);
 
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      //ok!
-    } else {
-      console.log("User NOT signed in.");
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        //ok
+      } else {
+        console.log("User NOT signed in.");
+      }
+    });
+
+    function quantityIncrease(product) {
+      let curVal = $('#quantity-' + product + '-actual').val();
+      let newVal = parseInt(curVal) + 1;
+      if (curVal > 0 && curVal < 20) {
+        $('#quantity-' + product + '-actual').val(newVal);
+        $('#quantity-' + product).val(newVal + ' karton ' + product);
+      }
     }
-  });
 
-</script>
+    function quantityDecrease(product) {
+      let curVal = $('#quantity-' + product + '-actual').val();
+      let newVal = parseInt(curVal) - 1;
+      if (curVal > 1) {
+        $('#quantity-' + product + '-actual').val(newVal);
+        $('#quantity-' + product).val(newVal + ' karton ' + product);
+      }
+    }
+
+    function addToCart(product) {
+      let quantity = $('#quantity-' + product + '-actual').val();
+      let variant = $('#variant-' + product).val();
+      alert("quantity: " + quantity + " and variant: " + variant);
+    }
+
+  </script>

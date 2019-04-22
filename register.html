@@ -563,8 +563,14 @@
                 state: inputState,
                 country: inputCountry,
                 lastchange: firebase.firestore.FieldValue.serverTimestamp(),
-                isAnonymous: isAnonymous,
-                uid: uid
+                isAnonymous: {
+                  status: isAnonymous,
+                  lastchange: firebase.firestore.FieldValue.serverTimestamp()
+                }
+                uid: uid,
+                isStaff: false,
+                isAdmin: false,
+                emailVerified: false
 
               }).then(function () {
                 console.log("Done saved registration of " + inputName + ".");
