@@ -1,13 +1,10 @@
 <div id="row">
-  <h4 class="text-success"><a class="text-muted" href="main.html">Dashboard</a> <i
-      class="fas fa-chevron-right text-secondary"></i> <i class="fas fa-shopping-cart"></i> Pembelian Stok 
-      <a href="#" class="text-muted float-right" id="btn-cart"><i class="fas fa-shopping-cart"></i></a>
-    </h4>
+  <h4 class="text-success"><a class="text-muted" href="main.html"><i class="far fa-id-badge"></i></a> <i
+      class="fas fa-chevron-right text-secondary"></i> <i class="fas fa-shopping-cart"></i> Pembelian Stok
+    <a href="main.html?v=cart" class="text-muted float-right" id="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+  </h4>
 </div>
-
-<br />
-<br />
-
+<hr>
 <p class="lead"">Untuk mula menambah stok anda, pilih produk yang anda kehendaki, pilih kuantiti  dan ketik butang "
   Masukkan Ke Dalam Bakul".</p> <hr class="mb-4">
 
@@ -24,7 +21,7 @@
           <form class="">
             <div class="row">
               <div class="col-sm-12">
-                <div class="form-group mb-2">
+                <div class="form-group">
                   <label for="variant-minyak" class="sr-only">Kapasiti Minyak (ml)</label>
                   <select id="variant-minyak" class="form-control">
                     <option value="120">120ml (6 botol per karton)</option>
@@ -38,15 +35,15 @@
           </form>
           <form class="">
             <div class="row">
-              <div class="col-sm-8">
-                <div class="form-group mb-2">
+              <div class="col-sm-7">
+                <div class="form-group">
                   <label for="quantity-minyak" class="sr-only">Kuantiti Minyak (Karton)</label>
-                  <input type="text" class="form-control" id="quantity-minyak" value="1 karton minyak" readonly>
+                  <input type="text" class="form-control-plaintext" id="quantity-minyak" value="Pesan 1 karton" readonly>
                   <input type="hidden" class="form-control" id="quantity-minyak-actual" value="1" readonly>
                 </div>
               </div>
               <div class="col-sm-2">
-                <div class="form-group mb-2">
+                <div class="form-group">
                   <button class="btn btn-outline-dark" onClick="event.preventDefault(); quantityDecrease('minyak');"><i
                       class="fas fa-minus"></i></button>
                 </div>
@@ -59,8 +56,8 @@
               </div>
             </div>
           </form>
-          <button href="#" class="btn btn-outline-primary" onClick="addToCart('minyak')">Pesan Minyak Morhabshi</button>
         </div>
+        <button href="#" class="btn btn-outline-primary" id="btnOrderMinyak">Masuk Ke Bakul Pembelian</button>
       </div> <!-- ./card -->
     </div> <!-- ./col-sm-4 -->
     <!-- ############ 
@@ -75,7 +72,7 @@
           <form class="">
             <div class="row">
               <div class="col-sm-12">
-                <div class="form-group mb-2">
+                <div class="form-group">
                   <label for="variant-stevia" class="sr-only">Kapasiti Stevia (ml)</label>
                   <select id="variant-stevia" class="form-control">
                     <option value="120">120ml (6 botol per karton)</option>
@@ -87,50 +84,75 @@
           </form>
           <form class="">
             <div class="row">
-              <div class="col-sm-8">
-                <div class="form-group mb-2">
+              <div class="col-sm-7">
+                <div class="form-group">
                   <label for="quantity-stevia" class="sr-only">Kuantiti Stevia (Karton)</label>
-                  <input type="text" class="form-control" id="quantity-stevia" value="1 karton Stevia" readonly>
+                  <input type="text" class="form-control-plaintext" id="quantity-stevia" value="Pesan 1 karton" readonly>
                   <input type="hidden" class="form-control" id="quantity-stevia-actual" value="1" readonly>
                 </div>
-              </div>
+              </div> <!-- ./col-sm-8 -->
               <div class="col-sm-2">
-                <div class="form-group mb-2">
+                <div class="form-group">
                   <button class="btn btn-outline-dark" onClick="event.preventDefault(); quantityDecrease('stevia');"><i
                       class="fas fa-minus"></i></button>
                 </div>
-              </div>
+              </div> <!-- ./col-sm-2 -->
               <div class="col-sm-2">
-                <div class="form-group mb-2">
-                  <button class="btn btn-outline-dark" onClick="event.preventDefault(); quantityIncrease('stevia');"><i
+                <div class="form-group">
+                    <button class="btn btn-outline-dark" onClick="event.preventDefault(); quantityIncrease('stevia');"><i
                       class="fas fa-plus"></i></button>
                 </div>
-              </div>
-            </div>
+              </div> <!-- ./col-sm-8 -->
+            </div> <!-- ./row -->
           </form>
-          <button href="#" class="btn btn-outline-primary" onClick="addToCart('stevia')">Order Stevia</button>
         </div>
+        <button href="#" class="btn btn-outline-primary btn-block" id="btnOrderStevia"">Masuk Ke Bakul Pembelian</button>
       </div> <!-- ./card -->
     </div> <!-- ./col-sm-4 -->
   </div>
 
   <script>
-    console.log("Hello from " + window.location.pathname + window.location.search);
+    console.log(" Hello from " + window.location.pathname + window.location.search);
 
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        //ok
+        $('#btnOrderStevia').attr('onClick', 'addToCart("stevia","' + user.email + '")');
+        $('#btnOrderMinyak').attr('onClick', 'addToCart("minyak","' + user.email + '")');
+
+        // Listen for new items added to cart
+        db.collection('agents/'+user.email+'/incart/').doc('cart')
+        .onSnapshot(function(cartItems) {
+          if (!cartItems.data().line_items) {
+            var items = [];
+          } else {
+            var items = cartItems.data().line_items;
+          }
+          var cartTotal = 0;
+          for(var j=0;j<items.length;j++) {
+            var thePrice = cartItems.data()["price_"+items[j].item][items[j].variant];
+            cartTotal += (parseInt(items[j].quantity)*parseInt(thePrice));
+          }
+          console.log("cartTotal is: RM "+cartTotal);
+          if (cartTotal>0) {
+            $('#btn-cart').html('<span class="badge badge-success" data-tooltip="tooltip" data-placement="bottom" title="Pamerkan bakul pembelian anda."><i class="fas fa-cart-plus"></i> MYR '+cartTotal+'</span>');
+            $(function () {
+              $('[data-tooltip="tooltip"]').tooltip()
+            })
+          }
+        }); // end items in cart
+
       } else {
         console.log("User NOT signed in.");
       }
     });
-
+    
     function quantityIncrease(product) {
-      let curVal = $('#quantity-' + product + '-actual').val();
+      let curVal = $('#quantity-'+product+'-actual').val();
       let newVal = parseInt(curVal) + 1;
+      
       if (curVal > 0 && curVal < 20) {
-        $('#quantity-' + product + '-actual').val(newVal);
-        $('#quantity-' + product).val(newVal + ' karton ' + product);
+        $('#quantity-'+product+'-actual').val(newVal);
+        $('#quantity-' + product).val('Pesan '+newVal+' karton');
       }
     }
 
@@ -138,26 +160,61 @@
       let curVal = $('#quantity-' + product + '-actual').val();
       let newVal = parseInt(curVal) - 1;
       if (curVal > 1) {
-        $('#quantity-' + product + '-actual').val(newVal);
-        $('#quantity-' + product).val(newVal + ' karton ' + product);
+          $('#quantity-' + product + '-actual').val(newVal);
+          $('#quantity-' + product).val('Pesan '+newVal + ' karton');
       }
     }
 
-    function addToCart(product) {
-      let quantity = $('#quantity-' + product + '-actual').val();
-      let variant = $('#variant-' + product).val();
-      $('#btn-cart').html('<i class="fas fa-cart-plus text-success" data-tooltip="tooltip" data-placement="bottom" title="Pamerkan bakul pembelian anda."></i>')
+    function addToCart(product, email) {
+      
+      $('#btnOrderStevia').prop('disabled', true);
+      $('#btnOrderMinyak').prop('disabled', true);
+      setTimeout(function () {
+        $('#btnOrderStevia').prop('disabled', false);
+        $('#btnOrderMinyak').prop('disabled', false);
+      }, 2000);
+      
+      var productQuantity = $('#quantity-'+product+'-actual').val();
+      var variant = $('#variant-'+product).val();
+      console.log('#quantity-'+product+'-actual '+productQuantity+"/"+variant);
+      $('#btn-cart').html('<i class="fas fa-cart-plus text-success" data-tooltip="tooltip" data-placement="bottom" title="Pamerkan bakul pembelian anda."></i>');
 
       $(function () {
         $('[data-tooltip="tooltip"]').tooltip()
       })
 
+      // SHow tooltip for 3 seconds
       $('.fa-cart-plus').tooltip('show')
-
-      setTimeout(function(){ 
+      setTimeout(function () {
         $('.fa-cart-plus').tooltip('hide');
       }, 3000);
-      
-    }
 
+      var cartRef = db.collection('agents/' + email + '/incart/').doc('cart');
+      return db.runTransaction(function (transaction) {
+        return transaction.get(cartRef).then(function (cartDoc) {
+          if (!cartDoc.data().line_items) {
+            var existingItems = [];
+          } else {
+            var existingItems = cartDoc.data().line_items;
+          }
+          var lineItem = {
+            item: product.trim(),
+            quantity: productQuantity,
+            variant: parseInt(variant)
+          };
+          existingItems.push(lineItem);
+          console.log("after push:");
+          console.log(existingItems);
+          transaction.set(cartRef, {
+            last_updated: firebase.firestore.FieldValue.serverTimestamp(),
+            line_items: existingItems
+          }, { merge: true });
+        });
+      }).then(function () {
+        console.log("Transaction successfully committed!");
+      }).catch(function (error) {
+        console.log("Transaction failed: ", error);
+      });
+
+    }
   </script>
