@@ -1,5 +1,10 @@
-<h4 class="text-success"><a class="text-muted" href="main.html">Dashboard</a> <i
-    class="fas fa-chevron-right text-secondary"></i> <i class="fas fa-shopping-cart"></i> Pembelian Stok </h4>
+<div id="row">
+  <h4 class="text-success"><a class="text-muted" href="main.html">Dashboard</a> <i
+      class="fas fa-chevron-right text-secondary"></i> <i class="fas fa-shopping-cart"></i> Pembelian Stok 
+      <a href="#" class="text-muted float-right" id="btn-cart"><i class="fas fa-shopping-cart"></i></a>
+    </h4>
+</div>
+
 <br />
 <br />
 
@@ -54,7 +59,7 @@
               </div>
             </div>
           </form>
-          <a href="#" class="btn btn-outline-primary" onClick="addToCart('minyak')">Pesan Minyak Morhabshi</a>
+          <button href="#" class="btn btn-outline-primary" onClick="addToCart('minyak')">Pesan Minyak Morhabshi</button>
         </div>
       </div> <!-- ./card -->
     </div> <!-- ./col-sm-4 -->
@@ -103,7 +108,7 @@
               </div>
             </div>
           </form>
-          <a href="#" class="btn btn-outline-primary" onClick="addToCart('stevia')">Order Stevia</a>
+          <button href="#" class="btn btn-outline-primary" onClick="addToCart('stevia')">Order Stevia</button>
         </div>
       </div> <!-- ./card -->
     </div> <!-- ./col-sm-4 -->
@@ -141,7 +146,18 @@
     function addToCart(product) {
       let quantity = $('#quantity-' + product + '-actual').val();
       let variant = $('#variant-' + product).val();
-      alert("quantity: " + quantity + " and variant: " + variant);
+      $('#btn-cart').html('<i class="fas fa-cart-plus text-success" data-tooltip="tooltip" data-placement="bottom" title="Pamerkan bakul pembelian anda."></i>')
+
+      $(function () {
+        $('[data-tooltip="tooltip"]').tooltip()
+      })
+
+      $('.fa-cart-plus').tooltip('show')
+
+      setTimeout(function(){ 
+        $('.fa-cart-plus').tooltip('hide');
+      }, 3000);
+      
     }
 
   </script>
