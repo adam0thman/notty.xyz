@@ -1,0 +1,257 @@
+<h2 class="display-4">Order Your Munch!</h2>
+
+<div class="py-2">
+  <span class="alert alert-success">Buy more then RM200 and get additional 5% discount!</span>
+</div>
+<hr>
+
+<div class="row">
+  <div class="col-md-4 order-md-2 mb-4">
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-muted">Your Munch Cart</span>
+      <span class="badge badge-secondary badge-pill" id="itemCount">0</span>
+    </h4>
+    <ul class="list-group mb-3" id="divCart">
+      
+    </ul>
+    <ul class="list-group mb-3" id="">
+      <li class="list-group-item d-flex justify-content-between">
+        <span>Total (RM)</span>
+        <strong id="grandTotal">0</strong>
+      </li>
+    </ul>
+
+    <form class="card p-2">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Promo code">
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-secondary">Redeem</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!--
+    Main Order Form
+  -->
+  <div class="col-md-8 order-md-1">
+
+    <p>Pick you delights:</p>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th scope="col" class="align-middle table-info">Kueh Name</th>
+          <th scope="col" class="align-middle text-center table-info">Quantity</th>
+          <th scope="col" class="align-middle text-center table-info"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="align-middle"><i class="fas fa-birthday-cake"></i> Kueh Lapis Pelangi @ RM13/jar</td>
+          <td class="align-middle text-center"><input type="number" id="quantity-lapis" value="1"></td>
+          <td class="align-middle text-center"><button class="btn btn-outline-secondary btn-sm" onclick="addToCart('lapis',13.00,'Kueh Lapis Pelangi');">Add</button></td>
+        </tr>
+        <tr>
+          <td class="align-middle"><i class="fas fa-hamburger"></i> Super Gold Honey Cornflakes @ RM8/jar</td>
+          <td class="align-middle text-center"><input type="number" id="quantity-cornflake" value="1"></td>
+          <td class="align-middle text-center"><button class="btn btn-outline-secondary btn-sm" onclick="addToCart('cornflake',8.00,'Super Gold Honey Cornflakes');">Add</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <h4 class="mb-3">Delivery Address</h4>
+    <form class="needs-validation" novalidate>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="firstName">First name</label>
+          <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+          <div class="invalid-feedback">
+            Valid first name is required.
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="lastName">Last name</label>
+          <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+          <div class="invalid-feedback">
+            Valid last name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="email">Email <span class="text-muted">(Optional)</span></label>
+        <input type="email" class="form-control" id="email" placeholder="you@example.com">
+        <div class="invalid-feedback">
+          Please enter a valid email address for shipping updates.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="address">Address</label>
+        <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+        <div class="invalid-feedback">
+          Please enter your shipping address.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+      </div>
+
+      <div class="row">
+        <div class="col-md-5 mb-3">
+          <label for="country">Country</label>
+          <select class="custom-select d-block w-100" id="country" required>
+            <option value="">Choose..</option>
+            <option value="my">Malaysia</option>
+            <option value="bn">Brunei Darussalam</option>
+          </select>
+          <div class="invalid-feedback">
+            Please select a valid country.
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="state">State</label>
+          <select class="custom-select d-block w-100" id="state" required>
+            <option value="">Choose...</option>
+            <option>California</option>
+          </select>
+          <div class="invalid-feedback">
+            Please provide a valid state.
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="postcode">Postcode</label>
+          <input type="text" class="form-control" id="postcode" placeholder="" required>
+          <div class="invalid-feedback">
+            Zip code required.
+          </div>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="same-address">
+        <label class="custom-control-label" for="same-address">Billing address is the same as my shipping
+          address</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="save-info">
+        <label class="custom-control-label" for="save-info">Save this information for next time</label>
+      </div>
+      <hr class="mb-4">
+
+      <h4 class="mb-3">Payment</h4>
+
+      <div class="d-block my-3">
+        <div class="custom-control custom-radio">
+          <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+          <label class="custom-control-label" for="credit">Credit card</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+          <label class="custom-control-label" for="debit">Debit card</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+          <label class="custom-control-label" for="paypal">Paypal</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="cc-name">Name on card</label>
+          <input type="text" class="form-control" id="cc-name" placeholder="" required>
+          <small class="text-muted">Full name as displayed on card</small>
+          <div class="invalid-feedback">
+            Name on card is required
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="cc-number">Credit card number</label>
+          <input type="text" class="form-control" id="cc-number" placeholder="" required>
+          <div class="invalid-feedback">
+            Credit card number is required
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 mb-3">
+          <label for="cc-expiration">Expiration</label>
+          <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+          <div class="invalid-feedback">
+            Expiration date required
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="cc-expiration">CVV</label>
+          <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+          <div class="invalid-feedback">
+            Security code required
+          </div>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <button class="btn btn-outline-success btn-lg btn-block" type="submit" id="btnProceedOrder" disabled>Continue to payment</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  console.log("Hello from " + window.location.pathname + window.location.search);
+
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+
+    } else {
+      console.log("User NOT signed in.");
+    }
+  });
+
+  function addToCart(item, unitPrice, itemText) {
+    var itemCount = $('#itemCount').text();
+    var quantity = $('#quantity-' + item).val();
+    var thisTotal = parseInt(quantity)*parseInt(unitPrice);
+    var mainNode = document.getElementById('divCart');
+    var child = document.createElement('li');
+    child.classList.add('list-group-item');
+    child.classList.add('d-flex');
+    child.classList.add('justify-content-between');
+    child.classList.add('lh-condensed');
+    child.setAttribute('id','item-'+itemCount);
+    child.innerHTML = '<div>'+
+                      ' <h6 class="my-0"><i class="fas fa-minus-circle text-danger" onclick="removeItem('+itemCount+')"></i> '+upFirst(itemText)+'</h6>'+
+                      ' <small class="text-muted">Order quantity: '+quantity+' jar</small>'+
+                      '</div>'+
+                      '<span class="text-muted" id="item-'+itemCount+'-total">'+thisTotal+'</span>';
+    mainNode.appendChild(child);
+    var currentGrand = $('#grandTotal').html();
+    var newGrand = parseInt(currentGrand) + parseInt(thisTotal);
+    $('#grandTotal').text(newGrand);
+    $('#quantity-' + item).val(1);
+    var newItemCount = parseInt(itemCount)+1;
+    $('#itemCount').text(newItemCount);
+    if (newItemCount > 0) {
+      $('#btnProceedOrder').prop('disabled', false);
+    } else {
+      $('#btnProceedOrder').prop('disabled', true);
+    }
+  }
+
+  function removeItem(id) {
+    var thisTotal = $('#item-'+String(id)+'-total').text();
+    var currentGrand = $('#grandTotal').html();
+    var newGrand = parseInt(currentGrand) - parseInt(thisTotal);
+    var itemCount = $('#itemCount').text();
+    var newItemCount = (parseInt(itemCount)-1);
+    //if (newItemCount < 0) newItemCount = 0;
+    console.log("newGrand is: "+newGrand+" and newItemCount is: "+newItemCount);
+    $('#grandTotal').text(newGrand);
+    if (newItemCount > 0) {
+      $('#btnProceedOrder').prop('disabled', false);
+    } else {
+      $('#btnProceedOrder').prop('disabled', true);
+    }
+    $('#itemCount').text(newItemCount);
+    $('#item-'+String(id)).remove();
+  }
+</script>
